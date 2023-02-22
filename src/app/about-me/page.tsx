@@ -1,7 +1,7 @@
 "use client";
 
 const AboutMe = () => {
-  const khanh: string = "ddasdasd";
+  const khanh: string = "ddasdasddsds";
   return <h1 className="text-3xl font-bold underline">Hello world! {khanh}</h1>;
 };
 
