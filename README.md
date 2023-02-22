@@ -1,7 +1,10 @@
 ## Getting Started
 
 Config husky
+
+```bash
 chmod ug+x .husky/\*
+```
 
 Run the development server:
 
