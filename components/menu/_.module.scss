@@ -1,0 +1,43 @@
+.menu {
+  height: 100vh;
+  width: 100%;
+  transition: all 0.2s ease;
+  transform: translateY(100vh);
+  position: fixed;
+  display: flex;
+  .menuCard {
+    flex: 1;
+    // width: 33.333%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(0);
+    transition: transform 1s ease, background 0.3s ease,
+      -webkit-transform 1s ease;
+    position: relative;
+    cursor: pointer;
+  }
+  .close {
+    position: absolute;
+    width: 50;
+  }
+}
+
+.active {
+  .menuCard {
+    transform: translateY(-100vh);
+    &:nth-child(1) {
+      background: #e7efc1;
+      transition-delay: 0s;
+    }
+    &:nth-child(2) {
+      background: #fff8d5;
+      transition-delay: 0.5s;
+    }
+    &:nth-child(3) {
+      background: #e1efff;
+      transition-delay: 1s;
+    }
+  }
+}
