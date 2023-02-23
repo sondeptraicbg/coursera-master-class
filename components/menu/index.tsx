@@ -1,4 +1,4 @@
-"use client";
+import Link from "next/link";
 
 import { forwardRef, useState } from "react";
 import styles from "./_.module.scss";
@@ -49,13 +49,19 @@ const Menu = forwardRef(() => {
               </svg>
             </div>
           )}
-          <p>About</p>
+          <Link href={"/about-me"}>
+            <p>About</p>
+          </Link>
         </div>
         <div className={styles.menuCard}>
-          <p>Rules</p>
+          <Link href={"/rules"}>
+            <p>Rules</p>
+          </Link>
         </div>
         <div className={styles.menuCard}>
-          <p>Guidance</p>
+          <Link href={"/guidance"}>
+            <p>Guidance</p>
+          </Link>
         </div>
       </div>
     </>
