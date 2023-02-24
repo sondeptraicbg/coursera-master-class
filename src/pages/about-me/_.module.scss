@@ -30,9 +30,9 @@
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     }
     .curl {
-	@media screen and (max-width: 768px) {
-		display: none;
-		}
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
       width: 7.5rem;
       height: 7.5rem;
       position: absolute;
@@ -53,6 +53,7 @@
       transition: all 0.5s ease;
     }
     .curl:hover {
+      cursor: pointer;
       width: 12.5rem;
       height: 12.5rem;
     }
