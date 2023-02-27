@@ -10,14 +10,11 @@ type CardData = {
 };
 
 const Alphabet = () => {
+  const [cardStates, setCardStates] = useState({});
+
   const play = (letter: string) => {
     const audio = document.getElementById(letter);
     audio?.play();
-  };
-  const [cardStates, setCardStates] = useState({});
-
-  const handleFlip = (id: string, isFlipped: boolean) => {
-    setCardStates((prevStates) => ({ ...prevStates, [id]: isFlipped }));
   };
 
   const cards: CardData[] = [
@@ -49,6 +46,11 @@ const Alphabet = () => {
     { id: "z", frontContent: "zeppelin", backContent: <h2>Zz</h2> },
     // Add as many cards as you need
   ];
+  
+  const handleFlip = (id: string, isFlipped: boolean) => {
+    setCardStates((prevStates) => ({ ...prevStates, [id]: isFlipped }));
+  };
+  
   return (
     <div className={styles.alphabet}>
       <div className={styles.container}>
@@ -61,86 +63,11 @@ const Alphabet = () => {
               backContent={card.backContent}
               handleFlip={handleFlip}
             />
+            <audio id={card.id}>
+              <source src={"/audio/" + card.id + ".mp3"} type="audio/mpeg" />
+            </audio>
           </div>
         ))}
-        <audio id="a">
-          <source src="/audio/a.mp3" type="audio/mpeg" />
-        </audio>
-        <audio id="b">
-          <source src="/audio/b.mp3" type="audio/mpeg" />
-        </audio>
-        <audio id="c">
-          <source src="/audio/c.mp3" type="audio/mpeg" />
-        </audio>
-        <audio id="d">
-          <source src="/audio/d.mp3" type="audio/mpeg" />
-        </audio>
-        <audio id="e">
-          <source src="/audio/e.mp3" type="audio/mpeg" />
-        </audio>
-        <audio id="f">
-          <source src="/audio/f.mp3" type="audio/mpeg" />
-        </audio>
-        <audio id="g">
-          <source src="/audio/g.mp3" type="audio/mpeg" />
-        </audio>
-        <audio id="h">
-          <source src="/audio/h.mp3" type="audio/mpeg" />
-        </audio>
-        <audio id="i">
-          <source src="/audio/i.mp3" type="audio/mpeg" />
-        </audio>
-        <audio id="j">
-          <source src="/audio/j.mp3" type="audio/mpeg" />
-        </audio>
-        <audio id="k">
-          <source src="/audio/k.mp3" type="audio/mpeg" />
-        </audio>
-        <audio id="l">
-          <source src="/audio/l.mp3" type="audio/mpeg" />
-        </audio>
-        <audio id="m">
-          <source src="/audio/m.mp3" type="audio/mpeg" />
-        </audio>
-        <audio id="n">
-          <source src="/audio/n.mp3" type="audio/mpeg" />
-        </audio>
-        <audio id="o">
-          <source src="/audio/o.mp3" type="audio/mpeg" />
-        </audio>
-        <audio id="p">
-          <source src="/audio/p.mp3" type="audio/mpeg" />
-        </audio>
-        <audio id="q">
-          <source src="/audio/q.mp3" type="audio/mpeg" />
-        </audio>
-        <audio id="r">
-          <source src="/audio/r.mp3" type="audio/mpeg" />
-        </audio>
-        <audio id="s">
-          <source src="/audio/s.mp3" type="audio/mpeg" />
-        </audio>
-        <audio id="t">
-          <source src="/audio/t.mp3" type="audio/mpeg" />
-        </audio>
-        <audio id="u">
-          <source src="/audio/u.mp3" type="audio/mpeg" />
-        </audio>
-        <audio id="v">
-          <source src="/audio/v.mp3" type="audio/mpeg" />
-        </audio>
-        <audio id="w">
-          <source src="/audio/w.mp3" type="audio/mpeg" />
-        </audio>
-        <audio id="x">
-          <source src="/audio/x.mp3" type="audio/mpeg" />
-        </audio>
-        <audio id="y">
-          <source src="/audio/y.mp3" type="audio/mpeg" />
-        </audio>
-        <audio id="z">
-          <source src="/audio/z.mp3" type="audio/mpeg" />
-        </audio>
       </div>
     </div>
   );
