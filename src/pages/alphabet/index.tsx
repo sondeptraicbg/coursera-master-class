@@ -1,4 +1,3 @@
-import { log } from "console";
 import styles from "./_.module.scss";
 import LetterCard from "components/letter-card";
 import { useState } from "react";
