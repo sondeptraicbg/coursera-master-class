@@ -1,0 +1,91 @@
+@import url("https://fonts.googleapis.com/css?family=Fredoka+One&display=swap");
+.alphabet {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  font-family: "Fredoka One", cursive;
+  font-size: 1em;
+  color: #251204;
+  .container {
+    width: 90.25rem;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    .letter {
+      width: 10.625rem;
+      height: 12.875rem;
+      padding: 0.625rem;
+      margin: 0.625rem;
+      border-radius: 15px;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: center;
+    }
+
+    .letter:nth-child(1),
+    .letter:nth-child(11n) {
+      background-color: #f4d7d7;
+    }
+
+    .letter:nth-child(2n),
+    .letter.letter:nth-child(17n) {
+      background-color: #f7ff9a;
+    }
+
+    .letter:nth-child(3n) {
+      background-color: #c99ecb;
+    }
+
+    .letter:nth-child(4n) {
+      background-color: #ee8b52;
+    }
+
+    .letter:nth-child(5n) {
+      background-color: #56becb;
+    }
+
+    .letter.letter:nth-child(6n),
+    .letter.letter:nth-child(23n) {
+      background-color: #f3cfcf;
+    }
+
+    .letter.letter:nth-child(7n) {
+      background-color: #f7af85;
+    }
+
+    .letter.letter:nth-child(8n),
+    .letter.letter:nth-child(12n),
+    .letter.letter:nth-child(19n) {
+      background-color: #a2ca4d;
+    }
+
+    .letter.letter:nth-child(9n),
+    .letter.letter:nth-child(13n) {
+      background-color: #ef8b89;
+    }
+
+    .letter.letter:nth-child(10n) {
+      background-color: #92ddee;
+    }
+
+    .letter div {
+      width: 10rem;
+      height: 10rem;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .letter:nth-child(1),
+    .letter:nth-child(5),
+    .letter:nth-child(9),
+    .letter:nth-child(15),
+    .letter:nth-child(21) {
+      color: #ca4517;
+    }
+  }
+}
+
