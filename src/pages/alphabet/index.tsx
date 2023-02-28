@@ -46,12 +46,10 @@ const Alphabet = () => {
     audio?.play();
   };
 
-  
-  
   const handleFlip = (id: string, isFlipped: boolean) => {
     setCardStates((prevStates) => ({ ...prevStates, [id]: isFlipped }));
   };
-  
+
   return (
     <div className={styles.alphabet}>
       <div className={styles.container}>
