@@ -50,17 +50,22 @@ const Menu = forwardRef(() => {
             </div>
           )}
           <Link href={"/about-me"}>
-            <p>About</p>
+            <p>Tác giả</p>
           </Link>
         </div>
         <div className={styles.menuCard}>
           <Link href={"/rules"}>
-            <p>Rules</p>
+            <p>Nguyên tắc</p>
           </Link>
         </div>
         <div className={styles.menuCard}>
-          <Link href={"/guidance"}>
-            <p>Guidance</p>
+          <Link href={"/how-to-learn"}>
+            <p>Cách học</p>
+          </Link>
+        </div>
+        <div className={styles.menuCard}>
+          <Link href={"/learn"}>
+            <p>Học</p>
           </Link>
         </div>
       </div>
