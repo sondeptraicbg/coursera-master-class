@@ -42,7 +42,7 @@ const Alphabet = () => {
   const [cardStates, setCardStates] = useState({});
 
   const play = (letter: string) => {
-    const audio = document.getElementById(letter);
+    const audio = document.getElementById(letter) as HTMLMediaElement;
     audio?.play();
   };
 
