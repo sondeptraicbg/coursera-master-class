@@ -64,7 +64,7 @@ const Menu = forwardRef(() => {
         >
           <p>Cách học</p>
         </div>
-        <div className={styles.menuCard}>
+        <div className={styles.menuCard} onClick={() => movePage("/table-of-contents")}>
           <p>Học</p>
         </div>
       </div>

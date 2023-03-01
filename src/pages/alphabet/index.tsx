@@ -1,6 +1,7 @@
 import styles from "./_.module.scss";
 import LetterCard from "components/letter-card";
 import { useState } from "react";
+import Layout from "components/layout";
 
 type CardData = {
   id: string;
@@ -71,5 +72,5 @@ const Alphabet = () => {
     </div>
   );
 };
-
+Alphabet.getLayout = Layout
 export default Alphabet;

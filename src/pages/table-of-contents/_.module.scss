@@ -1,0 +1,129 @@
+// base
+// * { box-sizing: border-box; }
+#content {
+  height: 100vh;
+  min-height: 600px;
+  padding: 2rem;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: "Roboto", sans-serif;
+  letter-spacing: .1rem;
+  #tocContainer {
+    min-width: 22rem;
+    @media screen and (min-width: 992px) {
+      min-width: 60rem;
+    }
+    @media screen and (min-width: 1200px) {
+      min-width: 60rem;
+    }
+    margin: 0 auto;
+    max-height: 45rem;
+    overflow-y: auto;
+    background: #faf8fd;
+    backdrop-filter: blur(10px);
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    a { text-decoration: none; transition: .3s; }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 0;
+    }
+    .tocTitle {
+      font-size: 25px;
+      margin: 0 0 1rem;
+      display: flex;
+      justify-content: space-between;
+      .tocToggle a {
+        font-size: .8rem;
+      }
+    }
+    .tocList {
+      a {
+        display: flex;
+        align-items: flex-start;
+        &:hover {
+          opacity: .6;
+        }
+      }
+      .image {
+        margin-left: 10px;
+      }
+    }
+  }
+  #tocContainer::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+  }
+}
+
+
+// type03
+#content {
+  #tocContainer {
+    padding: 2rem;
+    line-height: 1.8;
+    a {
+      color: #1a1a1a;
+    }
+    .tocToggle a {
+      padding: 3px 5px;
+      font-size: 80%;
+      letter-spacing: 1px;
+      border: 1px solid #7f7f7f;
+      border-radius: 3px;
+      &:hover {
+        background: #7f7f7f;
+        color: #fff;
+      }
+    }
+    .tocList {
+      font-size: .95rem;
+      position: relative;
+      &:before {
+          content: "";
+          width: 1px;
+          height: 100%;
+          background: #ccc;
+          position: absolute;
+        }
+      li {
+        position: relative;
+        padding: 0.3rem 0;
+        a {
+          align-items: center;
+          &:before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            background: #000;
+            border-radius: 100%;
+            margin-left: -3px;
+            margin-right: .5rem;
+          }
+        }
+        .tocNumber {
+          color: #000;
+          font-size: 2rem;
+          line-height: 1;
+          margin-right: .5rem;
+        }
+        ul li {
+          a{
+            padding-left: 2.5rem;
+            &:before {
+              content: none;
+            }
+          }
+          .tocNumber {
+            color: inherit;
+            font-size: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
