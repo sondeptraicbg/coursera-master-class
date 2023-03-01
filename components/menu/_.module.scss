@@ -7,6 +7,7 @@
   display: flex;
   flex-direction: row;
   top: 0;
+  z-index: 10;
   @media screen and (max-width: 768px) {
     flex-direction: column;
   }
@@ -34,13 +35,102 @@
       width: 4rem;
       top: 2rem;
       left: 2rem;
+      svg {
+        stroke-width: 4;
+      }
       &:hover {
         transform: scale(1.5);
       }
     }
+    .menuCardPhoto {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      width: 7.5rem;
+      height: 7.5rem;
+      position: relative;
+      margin-bottom: 0.38rem;
+      cursor: pointer;
+      margin-top: 0.2rem;
+      .menuCardPhotoBgc {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        position: absolute;
+        width: 7.5rem;
+        height: 7.5rem;
+        background-image: url(/base_simple.svg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        border-radius: 40% 60% 60% 40%/40% 40% 60% 60%;
+        -webkit-animation: morph 10s linear infinite;
+        animation: morph 10s linear infinite;
+        animation-delay: 2s;
+        z-index: 2;
+      }
+      .menuCardPhotoInside {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        position: absolute;
+        width: 7rem;
+        height: 7rem;
+        background: -webkit-gradient(
+          linear,
+          left top,
+          left bottom,
+          color-stop(1.07%, #eff9c4),
+          color-stop(98.04%, #bdce70)
+        );
+        background: -o-linear-gradient(top, #eff9c4 1.07%, #bdce70 98.04%);
+        background: linear-gradient(180deg, #eff9c4 1.07%, #bdce70 98.04%);
+        border-radius: 100%;
+      }
+      img {
+        width: 4rem;
+        z-index: 1;
+      }
+    }
+    &:nth-child(2) {
+      .menuCardPhotoInside {
+        -webkit-animation-delay: 1s;
+        animation-delay: 1s;
+        background: -o-linear-gradient(234.48deg, #fff6cb 16.72%, #f6df71 90.55%) !important;
+        background: linear-gradient(215.52deg, #fff6cb 16.72%, #f6df71 90.55%) !important;
+      }
+    }
+    &:nth-child(3) {
+      .menuCardPhotoInside {
+        -webkit-animation-delay: 1s;
+        animation-delay: 1s;
+        background: -o-linear-gradient(234.48deg, #e1efff 16.72%, #4da0ff 90.55%) !important;
+        background: linear-gradient(215.52deg, #e1efff 16.72%, #4da0ff 90.55%) !important;
+      }
+    }
+    &:nth-child(4) {
+      .menuCardPhotoInside {
+        -webkit-animation-delay: 1s;
+        animation-delay: 1s;
+        background: -o-linear-gradient(234.48deg, #f0e1ff 16.72%, #cc99ff 90.55%) !important;
+        background: linear-gradient(215.52deg, #f0e1ff 16.72%, #cc99ff 90.55%) !important;
+      }
+    }
   }
 }
-
+.menuIcon {
+  transition: all 0.2s ease-in-out;
+  margin-left: 1rem;
+  &:hover {
+    transform: scale(1.5);
+  }
+}
 .active {
   .menuCard {
     transform: translateY(-100vh);
