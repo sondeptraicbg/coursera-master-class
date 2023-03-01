@@ -1,6 +1,8 @@
 import styles from "./_.module.scss";
 import LetterCard from "components/letter-card";
 import { useState } from "react";
+import Layout from "components/layout";
+import Head from "next/head";
 
 type CardData = {
   id: string;
@@ -52,6 +54,9 @@ const Alphabet = () => {
 
   return (
     <div className={styles.alphabet}>
+      <Head>
+        <title>Bảng chữ cái</title>
+      </Head>
       <div className={styles.container}>
         {cards.map((card) => (
           <div className={styles.letter} onClick={(e) => play(card.id)}>
@@ -71,5 +76,5 @@ const Alphabet = () => {
     </div>
   );
 };
-
+Alphabet.getLayout = Layout
 export default Alphabet;
