@@ -3,7 +3,7 @@ import Lottie from "lottie-react";
 import background from "constants/background.json";
 import Head from "next/head";
 import styles from "./page.module.scss";
-export default function Home() {
+const Home = () => {
   return (
     <>
       <Head>
@@ -18,4 +18,6 @@ export default function Home() {
       </div>
     </>
   );
-}
+};
+Home.getLayout = Layout;
+export default Home;
