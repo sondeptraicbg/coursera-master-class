@@ -1,29 +1,21 @@
-import Menu from "components/menu";
+import Layout from "components/layout";
+import Lottie from "lottie-react";
+import background from "constants/background.json";
+import Head from "next/head";
 import styles from "./page.module.scss";
-
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.header}>
-        <div>
-          <Menu />
-        </div>
-        <div className={styles.logoContainer}>
-          <ul>
-            <li>
-              <div className={`${styles.logoHolder} ${styles.logo}`}>
-                <a href="">
-                  <div className={styles.left}>
-                    <h3>Learning English</h3>
-                    <p>never easy like that</p>
-                  </div>
-                </a>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <div></div>
+    <>
+      <Head>
+        <title>Learning English</title>
+      </Head>
+      <div>
+        <Lottie
+          className={styles.main}
+          animationData={background}
+          loop={true}
+        />
       </div>
-    </main>
+    </>
   );
 }
