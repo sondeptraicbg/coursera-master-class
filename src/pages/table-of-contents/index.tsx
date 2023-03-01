@@ -144,8 +144,8 @@ const TableOfContents = () => {
       <div id={styles.tocContainer} className={styles.noBullets}>
         <p className={styles.tocTitle}>Mục lục</p>
         <ul className={styles.tocList}>
-          {tocs.map((tocs) => (
-            <li>
+          {tocs.map((tocs, index) => (
+            <li key={`toc_${index}`}>
               <a href={tocs.src}>
                 <span className={styles.tocNumber}></span> {tocs.content}
                 <Image
