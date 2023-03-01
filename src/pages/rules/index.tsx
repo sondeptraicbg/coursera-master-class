@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useSprings, animated, to as interpolate } from "@react-spring/web";
 import { useDrag } from "react-use-gesture";
 import styles from "./_.module.scss";
+import Layout from "components/layout";
+import Head from "next/head";
 
 const cards = [
   "/golden-rules/golden_rule_7.jpg",
@@ -85,8 +87,12 @@ const Deck = () => {
 const GoldenRules = () => {
   return (
     <div className={styles.container}>
+      <Head>
+        <title>Nguyên tắc vàng</title>
+      </Head>
       <Deck />
     </div>
   );
 };
+GoldenRules.getLayout = Layout
 export default GoldenRules;

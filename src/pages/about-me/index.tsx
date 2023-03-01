@@ -1,6 +1,7 @@
 import styles from "./_.module.scss";
 import Image from "next/image";
 import { useRouter } from 'next/router'
+import Head from "next/head";
 
 const AboutMe = () => {
   const router = useRouter();
@@ -9,6 +10,9 @@ const AboutMe = () => {
   };
   return (
     <div className={styles.book}>
+      <Head>
+        <title>Thông tin tác giả</title>
+      </Head>
       <div className={styles.bookCover}>
         <div className={styles.curl} onClick={goToHomePage} ></div>
         <Image
