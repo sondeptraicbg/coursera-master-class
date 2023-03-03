@@ -52,8 +52,8 @@
       -webkit-box-align: center;
       -ms-flex-align: center;
       align-items: center;
-      width: 7.5rem;
-      height: 7.5rem;
+      width: 8.5rem;
+      height: 8.5rem;
       position: relative;
       margin-bottom: 0.38rem;
       cursor: pointer;
@@ -63,8 +63,8 @@
         display: -ms-flexbox;
         display: flex;
         position: absolute;
-        width: 7.5rem;
-        height: 7.5rem;
+        width: 8.5rem;
+        height: 8.5rem;
         background-image: url(/base_simple.svg);
         background-repeat: no-repeat;
         background-position: center;
@@ -73,6 +73,7 @@
         -webkit-animation: morph 10s linear infinite;
         animation: morph 10s linear infinite;
         animation-delay: 2s;
+        animation-iteration-count: infinite;
         z-index: 2;
       }
       .menuCardPhotoInside {
@@ -97,29 +98,65 @@
         width: 4rem;
         z-index: 1;
       }
+      @keyframes morph {
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
     }
     &:nth-child(2) {
+      .menuCardPhotoBgc {
+        background-image: url(/base_simple_third.svg);
+      }
       .menuCardPhotoInside {
         -webkit-animation-delay: 1s;
         animation-delay: 1s;
-        background: -o-linear-gradient(234.48deg, #fff6cb 16.72%, #f6df71 90.55%) !important;
-        background: linear-gradient(215.52deg, #fff6cb 16.72%, #f6df71 90.55%) !important;
+        background: -o-linear-gradient(
+          234.48deg,
+          #fff6cb 16.72%,
+          #f6df71 90.55%
+        ) !important;
+        background: linear-gradient(
+          215.52deg,
+          #fff6cb 16.72%,
+          #f6df71 90.55%
+        ) !important;
       }
     }
     &:nth-child(3) {
+      .menuCardPhotoBgc {
+        background-image: url(/base_simple_second.svg);
+      }
       .menuCardPhotoInside {
         -webkit-animation-delay: 1s;
         animation-delay: 1s;
-        background: -o-linear-gradient(234.48deg, #e1efff 16.72%, #4da0ff 90.55%) !important;
-        background: linear-gradient(215.52deg, #e1efff 16.72%, #4da0ff 90.55%) !important;
+        background: -o-linear-gradient(
+          234.48deg,
+          #e1efff 16.72%,
+          #4da0ff 90.55%
+        ) !important;
+        background: linear-gradient(
+          215.52deg,
+          #e1efff 16.72%,
+          #4da0ff 90.55%
+        ) !important;
       }
     }
     &:nth-child(4) {
       .menuCardPhotoInside {
         -webkit-animation-delay: 1s;
         animation-delay: 1s;
-        background: -o-linear-gradient(234.48deg, #f0e1ff 16.72%, #cc99ff 90.55%) !important;
-        background: linear-gradient(215.52deg, #f0e1ff 16.72%, #cc99ff 90.55%) !important;
+        background: -o-linear-gradient(
+          234.48deg,
+          #f0e1ff 16.72%,
+          #cc99ff 90.55%
+        ) !important;
+        background: linear-gradient(
+          215.52deg,
+          #f0e1ff 16.72%,
+          #cc99ff 90.55%
+        ) !important;
       }
     }
   }
