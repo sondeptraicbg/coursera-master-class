@@ -68,7 +68,7 @@ const ListeningExercise = () => {
           id={styles.item}
           className={styles.a}
           key={exercise}
-          href={`listening/${index}`}
+          href={`/listening/${id}/${index}`}
         >
           <div className={styles.topic}>
             <span className={styles.topicName}>Topic: {exercise}</span>
