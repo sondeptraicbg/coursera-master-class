@@ -1,9 +1,5 @@
 import styles from "./_.module.scss";
 
-type word = {
-  word: string;
-};
-
 const ListNewWord = ({ words }: any) => {
   return (
     <>

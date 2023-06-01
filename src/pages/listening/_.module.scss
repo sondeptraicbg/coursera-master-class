@@ -1,105 +1,42 @@
-
 .layout {
-  margin: 0px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   background-color: rgb(247, 245, 243);
   font-size: 2.4vmin;
-
-  .audioOperations {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    height: 13vh;
-    background-color: white;
-    padding: 1vh;
-    margin: 10px;
-    border-radius: 1vw;
-
-    .operationsWrapper {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-      width: 50%;
-      .operation {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        width: 40%;
-        height: 5vh;
-        border: 1px solid gray;
-        border-radius: 5px;
-      }
-      :first-child {
-        border-right: 1px solid black;
-      }
-      :last-child {
-        border-left: 1px solid black;
-      }
-      #multiplier {
-        width: 25%;
-        height: 100%;
-      }
-      #rollBack {
-        width: 8vh;
-        height: 100%;
-      }
-      input {
-        padding-left: 5px;
-        width: 50%;
-        height: 100%;
-      }
-      label {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100%;
-        width: 30%;
-        background-color: rgba(183, 179, 179, 0.083);
-      }
-    }
-
-    #practice {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      width: 15vw;
-      height: 5vh;
-      border: 5px solid rgba(255, 166, 0, 0.435);
-      border-radius: 1vw; 
-      background-color: orange;
-      color: white;
-    }
-    button:active {
-      background-color: gainsboro;
-    }
-  }
 
   .wrapper {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    height: auto;
+    height: 60vh;
     width: calc(100% - 20px);
-    margin: 10px;
+    padding: 10px;
+    box-sizing: border-box;
 
+    @media screen and (max-width: 450px) {
+      flex-direction: column;
+      max-height: 60vh;
+      width: 100%;
+    }
     .list {
       padding: 0px;
-      height: 80vh;
+      height: inherit;
       width: 25%;
       overflow: auto;
       background-color: white;
+      border: 1px solid #9e9be8;
+      border-radius: 10px;
+      @media screen and (max-width: 450px) {
+        width: 100%;
+        margin-top: 20px;
+      }
       #column {
         display: flex;
         flex-direction: column;
         padding: 5px;
-      }  
+      }
       .borderBottom {
-        border-bottom: 1px solid black;
+        border-bottom: 1px solid #a07d7d;
       }
       .borderBottom:last-child {
         border: 0px;
@@ -107,35 +44,92 @@
     }
 
     .imageDisplay {
-      height: 80vh;
-      width: 70%;
-      background-color: white;
+      max-height: inherit;
+      width: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      align-items: center;
+      @media screen and (max-width: 450px) {
+        width: 100%;
+      }
+      img {
+        margin: auto;
+        max-width: 100%;
+        max-height: 100%;
+        border-radius: 10px;
+        padding: 2px;
+        border: 1px solid #705858;
+      }
     }
     input {
       height: 5vh;
       width: 10vh;
     }
   }
-}
 
-@media screen and (orientation: portrait){
-  .layout{
-    flex-direction: column;
-    width: 100%;
-    .wrapper {
-      width:  calc(100% - 20px);;
-      .imageDisplay {
-        height: 60vw;
+  .newWords {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    span {
+      width: 40%;
+      border: 1px solid #e2cece;
+      text-align: center;
+      align-items: center;
+      margin-bottom: 2px;
+      padding: 2px 0px;
+      @media screen and (max-width: 450px) {
+        width: 40%;
       }
     }
-    .list {
-      width:  calc(100% - 20px);;
-      height: calc(80vh - 60vw - 5vh)
+    & :hover {
+      background-color: #9e9be8;
     }
   }
 }
 
+#titleNewWord {
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+#vietnamse {
+  color: #a07d7d;
+}
+
 .title {
+  height: 2rem;
+  width: 80%;
+  margin: auto;
+  margin-top: 5px;
+  font-family: Arial;
+  font-weight: bold;
+  font-size: 150%;
+  justify-content: center;
+  box-sizing: content-box;
+  align-items: center;
   display: flex;
-  justify-content: space-around;
+  border: 2px solid #705858;
+  box-shadow: 4px 6px 1px -1px rgba(128, 128, 128, 1);
+}
+
+.audio {
+  width: 100%;
+  margin: 20px auto;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  audio {
+    width: 80%;
+    left: 10%;
+    margin-bottom: 20px;
+  }
+  span {
+    font-weight: bold;
+    font-size: small;
+    margin-bottom: 15px;
+  }
 }

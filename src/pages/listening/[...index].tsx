@@ -5,17 +5,6 @@ import Operations from "./AudioOperations";
 import { useRouter } from "next/router";
 import { Ranges } from "../constant/ListListeningLessons";
 import ListNewWord from "./newWords";
-import Image from "next/image";
-function Page() {
-  const router = useRouter();
-  return (
-    <p className={styles.title}>
-      {router.query.index
-        ? `topic ${router.query.index[1]} - age ${router.query.index[0]}`
-        : ""}
-    </p>
-  );
-}
 
 const ListeningComponent = () => {
   const [dialogueEngligh, setDialogueEnglish] = useState<any[]>([]);
@@ -35,7 +24,9 @@ const ListeningComponent = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://sheets.googleapis.com/v4/spreadsheets/1CatcEnNR5KpWCfPz-95YUVlE2WVDY4bYVFCNPP6Bnjo/values/basic!${Ranges[age][id]}?majorDimension=COLUMNS&key=AIzaSyBEC-5QDF7ocl-iJpC_vyXJjKyCdlR39i0`
+          `https://sheets.googleapis.com/v4/spreadsheets/1CatcEnNR5KpWCfPz-95YUVlE2WVDY4bYVFCNPP6Bnjo/values/basic!${
+            Ranges[age][id + 1]
+          }?majorDimension=COLUMNS&key=AIzaSyBEC-5QDF7ocl-iJpC_vyXJjKyCdlR39i0`
         );
         const jsonData = await response.json();
         const filteredData = jsonData.values.map((row: any) =>
@@ -60,7 +51,9 @@ const ListeningComponent = () => {
           <span>{`Topic: ${topic} - lứa tuổi ${age?.substring(3)}`}</span>
         </div>
         <div className={styles.wrapper}>
-          <div className={styles.imageDisplay}></div>
+          <div className={styles.imageDisplay}>
+            <img src={"/bg_temp.jpg"} alt="dailyroutin" />
+          </div>
           <Dialogue
             english={dialogueEngligh}
             vietnamese={dialogueVietnamese}
