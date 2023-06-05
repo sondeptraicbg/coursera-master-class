@@ -1,35 +1,84 @@
 .layout {
-  display: flex;
-  flex-direction: column;
   background-color: rgb(247, 245, 243);
-  font-size: 2.4vmin;
-
+  min-height: 100%;
+  padding-top: 20px;
   .wrapper {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    height: 60vh;
-    width: calc(100% - 20px);
+    width: 100%;
     padding: 10px;
     box-sizing: border-box;
-
-    @media screen and (max-width: 450px) {
+    @media screen and (max-width: 600px) {
       flex-direction: column;
-      max-height: 60vh;
-      width: 100%;
     }
-    .list {
-      padding: 0px;
-      height: inherit;
-      width: 25%;
-      overflow: auto;
-      background-color: white;
-      border: 1px solid #9e9be8;
+
+    .imageDisplay {
+      width: 100%;
       border-radius: 10px;
-      @media screen and (max-width: 450px) {
-        width: 100%;
-        margin-top: 20px;
+      overflow: hidden;
+      align-items: center;
+      padding: 5px 20px 5px 20px;
+      img {
+        margin: auto;
+        max-width: 100%;
+        max-height: 100%;
+        border-radius: 10px;
+        padding: 2px;
+        border: 1px solid #705858;
       }
+    }
+
+    .audio {
+      width: 100%;
+      margin: 0 20px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+      background-color: #e3eaea;
+      border-radius: 10px;
+      @media screen and (max-width: 600px) {
+        margin: 20px 0px 0px 0px;
+      }
+      .showSub {
+        min-width: 200px;
+        border: 2px solid #705858;
+        border-radius: 20px;
+      }
+
+      audio {
+        width: 80%;
+        left: 10%;
+        margin-bottom: 20px;
+      }
+      span {
+        font-weight: bold;
+        font-size: small;
+        margin-bottom: 15px;
+      }
+    }
+  }
+
+  .dialogue {
+    .showDialog {
+      width: 100%;
+      max-width: 400px;
+      border: 1px solid black;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+      margin: auto;
+      button {
+        width: 100%;
+        height: 100%;
+      }
+      & :hover {
+        background-color: #9e9be8;
+      }
+    }
+
+    .list {
+      padding: 5px;
+      overflow: auto;
       #column {
         display: flex;
         flex-direction: column;
@@ -42,35 +91,13 @@
         border: 0px;
       }
     }
-
-    .imageDisplay {
-      max-height: inherit;
-      width: 100%;
-      border-radius: 10px;
-      overflow: hidden;
-      align-items: center;
-      @media screen and (max-width: 450px) {
-        width: 100%;
-      }
-      img {
-        margin: auto;
-        max-width: 100%;
-        max-height: 100%;
-        border-radius: 10px;
-        padding: 2px;
-        border: 1px solid #705858;
-      }
-    }
-    input {
-      height: 5vh;
-      width: 10vh;
-    }
   }
 
   .newWords {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    margin: 0px 0px 20px 0px;
     span {
       width: 40%;
       border: 1px solid #e2cece;
@@ -100,10 +127,10 @@
 }
 
 .title {
-  height: 2rem;
+  min-height: 2rem;
   width: 80%;
   margin: auto;
-  margin-top: 5px;
+  margin-bottom: 20px;
   font-family: Arial;
   font-weight: bold;
   font-size: 150%;
@@ -113,23 +140,4 @@
   display: flex;
   border: 2px solid #705858;
   box-shadow: 4px 6px 1px -1px rgba(128, 128, 128, 1);
-}
-
-.audio {
-  width: 100%;
-  margin: 20px auto;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  audio {
-    width: 80%;
-    left: 10%;
-    margin-bottom: 20px;
-  }
-  span {
-    font-weight: bold;
-    font-size: small;
-    margin-bottom: 15px;
-  }
 }

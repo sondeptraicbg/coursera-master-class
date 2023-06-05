@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styles from "./_.module.scss";
 
 type data = {
@@ -15,7 +16,13 @@ const ListElement = ({ data }: { data: data }) => {
 };
 
 const Dialogue = ({ english, vietnamese }: any) => {
+  const [showDialogue, setShowDialogue] = useState(false);
   const convertedData: Array<data> = [];
+
+  const handleShowDialog = () => {
+    setShowDialogue(!showDialogue);
+  };
+
   for (let index = 0; index < english.length; index++) {
     const tempData = {
       english: english[index],
@@ -25,10 +32,17 @@ const Dialogue = ({ english, vietnamese }: any) => {
   }
 
   return (
-    <div className={styles.list}>
-      {convertedData.map((eachData: data) => {
-        return <ListElement data={eachData} />;
-      })}
+    <div className={styles.dialogue}>
+      <div className={styles.showDialog}>
+        <button onClick={handleShowDialog}>Dialogue</button>
+      </div>
+      {showDialogue && (
+        <div className={styles.list}>
+          {convertedData.map((eachData: data) => {
+            return <ListElement data={eachData} />;
+          })}
+        </div>
+      )}
     </div>
   );
 };

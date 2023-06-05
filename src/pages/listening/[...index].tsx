@@ -11,6 +11,10 @@ const ListeningComponent = () => {
   const [dialogueVietnamese, setDialogueVietnamese] = useState<any[]>([]);
   const [topic, setTopic] = useState<String>();
   const [newWords, setNewWords] = useState<any[]>([]);
+  const [startTime, setStartTime] = useState<any[]>([]);
+  const [endTime, setEndTime] = useState<any[]>([]);
+  const [showDialogue, setShowDialogue] = useState(false);
+
   const router = useRouter();
   const { index } = router.query;
   const age = index ? String(index[0]) : null;
@@ -24,7 +28,7 @@ const ListeningComponent = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://sheets.googleapis.com/v4/spreadsheets/1CatcEnNR5KpWCfPz-95YUVlE2WVDY4bYVFCNPP6Bnjo/values/basic!${
+          `https://sheets.googleapis.com/v4/spreadsheets/11l2MvPp3h7MiFaf5svxGQFe84U8u-hmLNJPP-euziCg/values/basic!${
             Ranges[age][id + 1]
           }?majorDimension=COLUMNS&key=AIzaSyBEC-5QDF7ocl-iJpC_vyXJjKyCdlR39i0`
         );
@@ -36,6 +40,8 @@ const ListeningComponent = () => {
         setNewWords(filteredData[2].toString().split(","));
         setDialogueEnglish(filteredData[4]);
         setDialogueVietnamese(filteredData[7]);
+        setStartTime(filteredData[8]);
+        setEndTime(filteredData[9]);
       } catch (error) {
         console.log("An error occurred:", error);
       }
@@ -51,19 +57,26 @@ const ListeningComponent = () => {
           <span>{`Topic: ${topic} - lứa tuổi ${age?.substring(3)}`}</span>
         </div>
         <div className={styles.wrapper}>
-          <div className={styles.imageDisplay}>
-            <img src={"/bg_temp.jpg"} alt="dailyroutin" />
+          <div>
+            <div className={styles.imageDisplay}>
+              <img src={"/bg_temp.jpg"} alt="dailyroutin" />
+            </div>
           </div>
-          <Dialogue
-            english={dialogueEngligh}
-            vietnamese={dialogueVietnamese}
-          ></Dialogue>
+          <Operations
+            prevDia={dialogueEngligh}
+            startTime={startTime}
+            endTime={endTime}
+          />
         </div>
+
+        <Dialogue
+          english={dialogueEngligh}
+          vietnamese={dialogueVietnamese}
+        ></Dialogue>
         <div>
           <ListNewWord words={newWords}></ListNewWord>
         </div>
       </div>
-      <Operations />
     </>
   );
 };
