@@ -7,7 +7,7 @@ import { Ranges } from "../constant/ListListeningLessons";
 import ListNewWord from "./newWords";
 
 const ListeningComponent = () => {
-  const [topic, setTopic] = useState<String>();
+  const [topic, setTopic] = useState<string>();
   const [newWords, setNewWords] = useState<any[]>([]);
   const [dialogue, setDialogue] = useState<any[]>([[], [], []]);
   const router = useRouter();
