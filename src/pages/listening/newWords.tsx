@@ -6,7 +6,7 @@ const ListNewWord = ({ words }: any) => {
       <h2 id={styles.titleNewWord}>New Words</h2>
       <div className={styles.newWords}>
         {words.map((word) => (
-          <span>{word}</span>
+          <span key={word}>{word}</span>
         ))}
       </div>
     </>

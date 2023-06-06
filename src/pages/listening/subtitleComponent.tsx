@@ -1,49 +1,59 @@
 import { useState } from "react";
 import styles from "./_.module.scss";
+import AudioOperation from "./AudioOperations";
+import { idText } from "typescript";
 
 type data = {
   english: string;
   vietnamese: string;
 };
 
-const ListElement = ({ data }: { data: data }) => {
-  return (
-    <div id={styles.column} className={styles.borderBottom}>
-      <span>{data.english}</span>
-      <span id={styles.vietnamse}>{data.vietnamese}</span>
-    </div>
-  );
-};
-
-const Dialogue = ({ english, vietnamese }: any) => {
+const Dialogue = ({ dialogue }: any) => {
   const [showDialogue, setShowDialogue] = useState(false);
-  const convertedData: Array<data> = [];
+  const englishDialogue = dialogue[0];
+  const allAudio = dialogue[1];
+  const vietnameseDialogue = dialogue[2];
+  const [english, setEnglish] = useState("");
+  const [audio, setAudio] = useState("");
+  const [vietnamese, setVietnamese] = useState("");
 
   const handleShowDialog = () => {
     setShowDialogue(!showDialogue);
   };
 
-  for (let index = 0; index < english.length; index++) {
-    const tempData = {
-      english: english[index],
-      vietnamese: vietnamese[index],
-    };
-    convertedData.push(tempData);
-  }
-
   return (
-    <div className={styles.dialogue}>
-      <div className={styles.showDialog}>
-        <button onClick={handleShowDialog}>Dialogue</button>
-      </div>
-      {showDialogue && (
-        <div className={styles.list}>
-          {convertedData.map((eachData: data) => {
-            return <ListElement data={eachData} />;
-          })}
+    <>
+      <AudioOperation
+        english={english}
+        audio={audio}
+        vietnamese={vietnamese}
+      ></AudioOperation>
+      <div className={styles.dialogue}>
+        <div className={styles.showDialog}>
+          <button onClick={handleShowDialog}>Lời thoại</button>
         </div>
-      )}
-    </div>
+        {showDialogue && (
+          <div className={styles.list}>
+            {englishDialogue.map((eng, index) => (
+              <button
+                onClick={() => {
+                  setEnglish(eng);
+                  setVietnamese(vietnameseDialogue[index]);
+                }}
+                key={eng}
+                className={styles.borderBottom}
+              >
+                <span>{eng}</span>
+                <span id={styles.vietnamse}>
+                  {" "}
+                  <br /> {vietnameseDialogue[index]}
+                </span>
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 
