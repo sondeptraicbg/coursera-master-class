@@ -10,12 +10,22 @@ type data = {
 
 const Dialogue = ({ dialogue }: any) => {
   const [showDialogue, setShowDialogue] = useState(false);
-  const englishDialogue = dialogue[0];
-  const allAudio = dialogue[1];
-  const vietnameseDialogue = dialogue[2];
+
   const [english, setEnglish] = useState("");
   const [audio, setAudio] = useState("");
   const [vietnamese, setVietnamese] = useState("");
+
+  if (!dialogue) {
+    return (
+      <div>
+        <h1>error</h1>
+      </div>
+    );
+  }
+
+  const englishDialogue = dialogue[0];
+  const allAudio = dialogue[1];
+  const vietnameseDialogue = dialogue[2];
 
   const handleShowDialog = () => {
     setShowDialogue(!showDialogue);

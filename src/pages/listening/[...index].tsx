@@ -3,7 +3,7 @@ import Dialogue from "./subtitleComponent";
 import styles from "./_.module.scss";
 import Operations from "./AudioOperations";
 import { useRouter } from "next/router";
-import { Ranges } from "../constant/ListListeningLessons";
+import { Ranges } from "../../../constants/ListListeningLessons";
 import ListNewWord from "./newWords";
 
 const ListeningComponent = () => {
