@@ -3,7 +3,7 @@ import Dialogue from "./Dialogue";
 import styles from "./_.module.scss";
 import { useRouter } from "next/router";
 import { Ranges } from "../../../constants/ListListeningLessons";
-import ListNewWord from "./NewWords";
+import ListNewWord from "./newWords";
 
 const ListeningComponent = () => {
   const [topic, setTopic] = useState<string>();
