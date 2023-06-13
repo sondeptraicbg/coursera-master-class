@@ -1,24 +1,20 @@
 import { useState } from "react";
 import styles from "./_.module.scss";
 import AudioOperation from "./AudioOperations";
-import { idText } from "typescript";
 
 type data = {
   english: string;
   vietnamese: string;
 };
 
-const Dialogue = ({ dialogue }: any) => {
-  const [showDialogue, setShowDialogue] = useState(false);
-
-  const [english, setEnglish] = useState("");
-  const [audio, setAudio] = useState("");
-  const [vietnamese, setVietnamese] = useState("");
+const Dialogue = ({ dialogue, audioSrc }: any) => {
+  const [showDialogue, setShowDialogue] = useState(true);
+  const [current, setCurrent] = useState(0);
 
   if (!dialogue) {
     return (
       <div>
-        <h1>error</h1>
+        <span>Can not get data</span>
       </div>
     );
   }
@@ -34,9 +30,11 @@ const Dialogue = ({ dialogue }: any) => {
   return (
     <>
       <AudioOperation
-        english={english}
-        audio={audio}
-        vietnamese={vietnamese}
+        english={englishDialogue}
+        audio={allAudio}
+        vietnamese={vietnameseDialogue}
+        index={current}
+        audioSrc={audioSrc}
       ></AudioOperation>
       <div className={styles.dialogue}>
         <div className={styles.showDialog}>
@@ -46,16 +44,12 @@ const Dialogue = ({ dialogue }: any) => {
           <div className={styles.list}>
             {englishDialogue.map((eng, index) => (
               <button
-                onClick={() => {
-                  setEnglish(eng);
-                  setVietnamese(vietnameseDialogue[index]);
-                }}
+                onClick={() => setCurrent(index)}
                 key={eng}
                 className={styles.borderBottom}
               >
                 <span>{eng}</span>
                 <span id={styles.vietnamse}>
-                  {" "}
                   <br /> {vietnameseDialogue[index]}
                 </span>
               </button>

@@ -1,35 +1,73 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import styles from "./_.module.scss";
-import { idText } from "typescript";
-import { setEngine } from "crypto";
 
-const Operations = ({ english, audio, vietnamese }: any) => {
+const Operations = ({ english, audio, vietnamese, index, audioSrc }: any) => {
   const [showSubtitle, setShowSubtitle] = useState(false);
+  const [isLoop, setIsLoop] = useState(false);
+  const [current, setCurrent] = useState(index);
+  const [prevIndex, setPrevIndex] = useState(index);
 
-  const handleShowSubtitle = () => {
-    setShowSubtitle(!showSubtitle);
+  if (!audio) {
+    return (
+      <div>
+        <span>Page not found - 404</span>
+      </div>
+    );
+  }
+
+  const audioSource = audioSrc + audio[current];
+  const length = english.length;
+
+  if (prevIndex !== index) {
+    setCurrent(index);
+    setPrevIndex(index);
+  }
+
+  const handleSwitch = () => {
+    if (current < length - 1) {
+      setCurrent(current + 1);
+    }
   };
 
   return (
     <>
       <div className={styles.audio}>
-        <span> Ấn vào từng đoạn hội thoại để nghe audio</span>
-        <audio controls>
-          <source src={"/audio/testAudio.mp3"} type="audio/mpeg" />
-          Your browser does not support the audio element.
-        </audio>
-
+        <span> Ấn vào chi tiết đoạn hội thoại để nghe theo đoạn</span>
         <div>
-          <button className={styles.showSub} onClick={handleShowSubtitle}>
-            {showSubtitle ? "Ẩn subtitle" : "Hiện subtitle"}
-          </button>
+          <audio
+            key={audioSource}
+            loop={isLoop}
+            autoPlay
+            controls
+            onEnded={handleSwitch}
+          >
+            <source src={audioSource} type="audio/mp4" />
+            Your browser does not support the audio element.
+          </audio>
         </div>
 
-        <div>
+        <div style={{ display: "flex" }}>
+          <input
+            className={styles.switch}
+            type="checkbox"
+            onChange={() => setIsLoop(!isLoop)}
+          />
+          <span style={{ margin: "2px 0px 0px 4px" }}>Vòng lặp</span>
+        </div>
+        <div style={{ display: "flex", marginTop: "10px" }}>
+          <input
+            className={styles.switch}
+            type="checkbox"
+            onChange={() => setShowSubtitle(!showSubtitle)}
+          />
+          <span style={{ margin: "2px 0px 0px 4px" }}>Hiện subtitle</span>
+        </div>
+
+        <div style={{ paddingTop: "5px" }}>
           {showSubtitle && (
             <span>
-              {english} <br />{" "}
-              <span style={{ color: "#a07d7d" }}>{vietnamese}</span>
+              {english[current]} <br />{" "}
+              <span style={{ color: "#a07d7d" }}>{vietnamese[current]}</span>
             </span>
           )}
         </div>

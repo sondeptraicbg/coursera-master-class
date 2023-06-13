@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import Dialogue from "./subtitleComponent";
+import Dialogue from "./Dialogue";
 import styles from "./_.module.scss";
-import Operations from "./AudioOperations";
 import { useRouter } from "next/router";
 import { Ranges } from "../../../constants/ListListeningLessons";
-import ListNewWord from "./newWords";
+import ListNewWord from "./NewWords";
 
 const ListeningComponent = () => {
   const [topic, setTopic] = useState<string>();
@@ -42,6 +41,14 @@ const ListeningComponent = () => {
     fetchData();
   }, [age, id]);
 
+  if (!age || !id) {
+    return (
+      <div>
+        <span>Page not found - 404</span>
+      </div>
+    );
+  }
+
   return (
     <>
       <div className={styles.layout}>
@@ -54,7 +61,10 @@ const ListeningComponent = () => {
           <div className={styles.imageDisplay}>
             <img src={"/bg_temp.jpg"} alt="dailyroutin" />
           </div>
-          <Dialogue dialogue={dialogue}></Dialogue>
+          <Dialogue
+            dialogue={dialogue}
+            audioSrc={`/audio/${age}/${age?.substring(3)}.${id}/`}
+          ></Dialogue>
         </div>
 
         <div>
