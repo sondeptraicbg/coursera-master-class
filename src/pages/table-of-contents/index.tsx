@@ -99,6 +99,21 @@ const TableOfContents = () => {
           ))}
         </ul>
       </div>
+      <div id={styles.practice}>
+        <span>Ôn tập</span>
+        <a href="#">
+          <div className={styles.practiceItem}>
+            <p>Danh sách yêu thích</p>
+          </div>
+        </a>
+
+        <a href="/practice">
+          <div className={styles.practiceItem}>
+            <h2>Ôn tập từ vựng</h2>
+            <p style={{ color: "#7f7f7f" }}>Tổng từ vựng: 720</p>
+          </div>
+        </a>
+      </div>
     </div>
   );
 };

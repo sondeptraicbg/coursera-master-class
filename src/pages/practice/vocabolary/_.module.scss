@@ -1,0 +1,83 @@
+.container {
+  width: 100%;
+  height: 100%;
+
+  .header {
+    height: 100px;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    background-color: rgb(247, 245, 243);
+    border-bottom: 2px solid #48546b;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    @media screen and (max-width: 600px) {
+      padding-left: 20%;
+    }
+    span {
+      margin: auto;
+      font-size: 200%;
+    }
+  }
+  .tag {
+    margin-top: 20px;
+    width: 50%;
+    height: 300px;
+    min-width: 200px;
+    background-color: #e3eaea;
+    border-radius: 20px;
+    margin: auto;
+  }
+
+  .switch-button {
+    width: 300px;
+    margin: auto;
+    display: flex;
+    justify-items: center;
+  }
+}
+
+.button-up,
+.button-down {
+  position: relative;
+  padding: 5px;
+  margin: 30px auto;
+  background: #fff;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  transition: all 0.2s linear;
+}
+
+.button-down:hover {
+  transform: translate3d(10px, 0, 0);
+}
+
+.button-up:hover {
+  transform: translate3d(-10px, 0, 0);
+}
+
+.button-up::after,
+.button-down::after {
+  content: "";
+  position: absolute;
+  left: 17px;
+  z-index: 11;
+  display: block;
+  width: 25px;
+  height: 25px;
+  border-top: 2px solid #000;
+  border-left: 2px solid #000;
+}
+.button-up::after {
+  top: 10px;
+  transform: rotate(-45deg);
+}
+
+.button-down::after {
+  top: 10px;
+  left: 5px;
+  transform: rotate(135deg);
+}

@@ -4,6 +4,7 @@ import styles from "./_.module.scss";
 import { useRouter } from "next/router";
 import { Ranges } from "../../../constants/ListListeningLessons";
 import ListNewWord from "./newWords";
+import Layout from "components/layout";
 
 const ListeningComponent = () => {
   const [topic, setTopic] = useState<string>();
@@ -52,14 +53,19 @@ const ListeningComponent = () => {
   return (
     <>
       <div className={styles.layout}>
-        <div className={styles.title}>
-          <span>{`Topic: ${
-            topic ? topic : "No content"
-          } - lứa tuổi ${age?.substring(3)}`}</span>
+        <div className={styles.header}>
+          <div className={styles.title}>
+            <span>{`Topic: ${
+              topic ? topic : "No content"
+            } - lứa tuổi ${age?.substring(3)}`}</span>
+          </div>
         </div>
         <div className={styles.wrapper}>
           <div className={styles.imageDisplay}>
-            <img src={"/bg_temp.jpg"} alt="dailyroutin" />
+            <img
+              src={`/imgs/${age}/${age.substring(3)}.${id}.jpg`}
+              alt="dailyroutin"
+            />
           </div>
           <Dialogue
             dialogue={dialogue}
@@ -75,4 +81,5 @@ const ListeningComponent = () => {
   );
 };
 
+ListeningComponent.getLayout = Layout;
 export default ListeningComponent;
