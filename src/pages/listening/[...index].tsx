@@ -45,7 +45,7 @@ const ListeningComponent = () => {
   if (!age || !id) {
     return (
       <div>
-        <span>Page not found - 404</span>
+        <span>Something went wrong, the age and index maybe are not true</span>
       </div>
     );
   }

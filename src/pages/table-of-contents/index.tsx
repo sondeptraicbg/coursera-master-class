@@ -2,7 +2,7 @@ import styles from "./_.module.scss";
 import Image from "next/image";
 import Layout from "components/layout";
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 type tocData = {
   id: number;
@@ -75,6 +75,12 @@ const tocs: tocData[] = [
 ];
 
 const TableOfContents = () => {
+  const router = useRouter();
+
+  const moveOnPage = (link: string) => {
+    router.push(link);
+  };
+
   return (
     <div id={styles.content}>
       <Head>
@@ -101,18 +107,24 @@ const TableOfContents = () => {
       </div>
       <div id={styles.practice}>
         <span>Ôn tập</span>
-        <a href="#">
-          <div className={styles.practiceItem}>
-            <p>Danh sách yêu thích</p>
-          </div>
-        </a>
+        <div
+          className={styles.practiceItem}
+          onClick={() => {
+            moveOnPage("/practice");
+          }}
+        >
+          <p>Danh sách yêu thích</p>
+        </div>
 
-        <a href="/practice">
-          <div className={styles.practiceItem}>
-            <h2>Ôn tập từ vựng</h2>
-            <p style={{ color: "#7f7f7f" }}>Tổng từ vựng: 720</p>
-          </div>
-        </a>
+        <div
+          className={styles.practiceItem}
+          onClick={() => {
+            moveOnPage("/practice");
+          }}
+        >
+          <h2>Ôn tập từ vựng</h2>
+          <p style={{ color: "#7f7f7f" }}>Tổng từ vựng: 720</p>
+        </div>
       </div>
     </div>
   );

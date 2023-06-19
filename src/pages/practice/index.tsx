@@ -1,4 +1,6 @@
 import Layout from "components/layout";
+import { link } from "fs";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import styles from "./_.module.scss";
 
@@ -58,6 +60,7 @@ const ages: age[] = [
 
 const AgeGroup = ({ allTopic }) => {
   const [id, setId] = useState(-1);
+  const router = useRouter();
 
   const handleClick = (index) => {
     if (index == id) {
@@ -66,6 +69,11 @@ const AgeGroup = ({ allTopic }) => {
       setId(index);
     }
   };
+
+  const moveOnPage = (link: string) => {
+    router.push(link);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -88,13 +96,15 @@ const AgeGroup = ({ allTopic }) => {
           {id === index && (
             <div className={styles.topics}>
               {allTopic[index].map((topic, index) => (
-                <a
+                <div
                   className={styles.topic}
                   key={topic}
-                  href={`/practice/vocabolary/${age.id}/${index}`}
+                  onClick={() => {
+                    moveOnPage(`/practice/vocabolary/${age.id}/${index + 1}`);
+                  }}
                 >
                   {topic}
-                </a>
+                </div>
               ))}
             </div>
           )}
