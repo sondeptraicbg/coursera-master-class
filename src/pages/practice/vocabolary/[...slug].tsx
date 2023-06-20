@@ -87,7 +87,7 @@ const Vocabolary = () => {
 };
 
 const FlashCard = ({ data, id }) => {
-  const [index, setIndex] = useState(1);
+  const [index, setIndex] = useState(0);
   const [indexTopic, setIndexTopic] = useState(id);
   const [topics, setTopics] = useState([]);
   const [newWords, setNewWords] = useState([]);
