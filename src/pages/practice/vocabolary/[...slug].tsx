@@ -1,6 +1,6 @@
 import Layout from "components/layout";
 import { useRouter } from "next/router";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./_.module.scss";
 
 // const ranges = [
@@ -80,7 +80,6 @@ const Vocabolary = () => {
         </div>
         <div className={styles.content}>
           <FlashCard data={data} id={id} />
-          {/* <SideBar topics={allTopics} current={id - 1} /> */}
         </div>
       </div>
     </>
@@ -126,6 +125,7 @@ const FlashCard = ({ data, id }) => {
   };
 
   const handleSwichTopic = (value) => {
+    setIndex(0);
     setIndexTopic(value);
   };
 

@@ -3,8 +3,6 @@ import { useEffect, useState } from "react";
 import Layout from "components/layout";
 import Head from "next/head";
 import styles from "./_.module.scss";
-import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
-import { type } from "os";
 
 const ranges = {
   age3: "basic!B16:D25",
@@ -64,11 +62,14 @@ const ListeningExercise = () => {
         </div>
       </header>
       {ageGroup.map((exercise, index) => (
-        <a
+        <div
           id={styles.item}
           className={styles.a}
           key={exercise}
-          href={`/listening/${id}/${index + 1}`}
+          // href={`/listening/${id}/${index + 1}`}
+          onClick={() => {
+            router.push(`/listening/${id}/${index + 1}`);
+          }}
         >
           <div className={styles.topic}>
             <span className={styles.topicName}>Topic: {exercise}</span>
@@ -81,7 +82,7 @@ const ListeningExercise = () => {
           <div className={styles.bottombuttons}>
             <button className={styles.play}>Let's Listen</button>
           </div>
-        </a>
+        </div>
       ))}
     </div>
   );

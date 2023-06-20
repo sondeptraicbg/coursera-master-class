@@ -2,11 +2,6 @@ import { useState } from "react";
 import styles from "./_.module.scss";
 import AudioOperation from "./AudioOperations";
 
-type data = {
-  english: string;
-  vietnamese: string;
-};
-
 const Dialogue = ({ dialogue, audioSrc }: any) => {
   const [showDialogue, setShowDialogue] = useState(true);
   const [current, setCurrent] = useState(0);
