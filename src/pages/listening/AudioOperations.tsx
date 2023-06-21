@@ -2,7 +2,7 @@ import { useState } from "react";
 import styles from "./_.module.scss";
 
 const Operations = ({ english, audio, vietnamese, index, audioSrc }: any) => {
-  const [showSubtitle, setShowSubtitle] = useState(false);
+  const [showSubtitle, setShowSubtitle] = useState(true);
   const [isLoop, setIsLoop] = useState(false);
   const [current, setCurrent] = useState(index);
   const [prevIndex, setPrevIndex] = useState(index);
@@ -59,6 +59,7 @@ const Operations = ({ english, audio, vietnamese, index, audioSrc }: any) => {
             className={styles.switch}
             type="checkbox"
             onChange={() => setShowSubtitle(!showSubtitle)}
+            checked={showSubtitle}
           />
           <span style={{ margin: "2px 0px 0px 4px" }}>Hiện subtitle</span>
         </div>

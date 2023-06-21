@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Layout from "components/layout";
 import Head from "next/head";
 import styles from "./_.module.scss";
-
+import { GOOGLE_API_KEY, GOOGLE_API_PRE, COLUMNS } from "constants/googleapi";
 const ranges = {
   age3: "basic!B16:D25",
   age4: "basic!B30:D138",
@@ -32,7 +32,7 @@ const ListeningExercise = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://sheets.googleapis.com/v4/spreadsheets/11l2MvPp3h7MiFaf5svxGQFe84U8u-hmLNJPP-euziCg/values/${ranges[id]}?majorDimension=COLUMNS&key=AIzaSyBEC-5QDF7ocl-iJpC_vyXJjKyCdlR39i0`
+          `${GOOGLE_API_PRE}${ranges[id]}${COLUMNS}${GOOGLE_API_KEY}`
         );
         const jsonData = await response.json();
         const filteredData = jsonData.values.map((row: any) =>

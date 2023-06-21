@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./_.module.scss";
 import YouTube from "react-youtube";
 import { useRouter } from "next/router";
+import { GOOGLE_API_KEY, GOOGLE_API_PRE, COLUMNS } from "constants/googleapi";
 
 const ListeningPage = () => {
   const [videoUrls, setVideoUrls] = useState([]);
@@ -11,6 +12,7 @@ const ListeningPage = () => {
   const router = useRouter();
   const { id } = router.query;
   const idNum = id ? Number(id) : null;
+  const RANGE_SHEET = "basic!B16:G25";
 
   useEffect(() => {
     if (!idNum || !id) {
@@ -20,7 +22,7 @@ const ListeningPage = () => {
     const fetchData = async () => {
       try {
         const rawData = await fetch(
-          `https://sheets.googleapis.com/v4/spreadsheets/11l2MvPp3h7MiFaf5svxGQFe84U8u-hmLNJPP-euziCg/values/basic!B16:G25?majorDimension=COLUMNS&key=AIzaSyBEC-5QDF7ocl-iJpC_vyXJjKyCdlR39i0`
+          `${GOOGLE_API_PRE}${RANGE_SHEET}${COLUMNS}${GOOGLE_API_KEY}`
         );
         const jsonData = await rawData.json();
         const filteredData = await jsonData.values;
@@ -170,6 +172,8 @@ const VideoOperation = ({ topics, newWords, videoUrls, id }) => {
         </div>
       </div>
       <hr />
+      <h2 id={styles.titleNewWord}>New Words</h2>
+
       <div className={styles.newWords}>
         {words.map((word, index) => (
           <button key={word}>{word}</button>

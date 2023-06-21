@@ -3,7 +3,7 @@ import { link } from "fs";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import styles from "./_.module.scss";
-
+import { GOOGLE_API_KEY, GOOGLE_API_PRE, ROWS } from "constants/googleapi";
 type age = {
   id: number;
   name: string;
@@ -116,12 +116,13 @@ const AgeGroup = ({ allTopic }) => {
 
 const Practice = () => {
   const [allTopic, setAllTopic] = useState([]);
+  const RANGE_SHEET = "basic!B4:K12";
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://sheets.googleapis.com/v4/spreadsheets/11l2MvPp3h7MiFaf5svxGQFe84U8u-hmLNJPP-euziCg/values/basic!B4:K12?majorDimension=ROWS&key=AIzaSyBEC-5QDF7ocl-iJpC_vyXJjKyCdlR39i0`
+          `${GOOGLE_API_PRE}${RANGE_SHEET}${ROWS}${GOOGLE_API_KEY}`
         );
         const jsonData = await response.json();
         const filteredData = jsonData.values.map((row: any) =>

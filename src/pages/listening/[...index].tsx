@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { Ranges } from "../../../constants/ListListeningLessons";
 import ListNewWord from "./newWords";
 import Layout from "components/layout";
+import { GOOGLE_API_KEY, GOOGLE_API_PRE, COLUMNS } from "constants/googleapi";
 
 const ListeningComponent = () => {
   const [topic, setTopic] = useState<string>();
@@ -24,7 +25,7 @@ const ListeningComponent = () => {
       try {
         console.log(id);
         const response = await fetch(
-          `https://sheets.googleapis.com/v4/spreadsheets/11l2MvPp3h7MiFaf5svxGQFe84U8u-hmLNJPP-euziCg/values/basic!${Ranges[age][id]}?majorDimension=COLUMNS&key=AIzaSyBEC-5QDF7ocl-iJpC_vyXJjKyCdlR39i0`
+          `${GOOGLE_API_PRE}basic!${Ranges[age][id]}${COLUMNS}${GOOGLE_API_KEY}`
         );
         const jsonData = await response.json();
         const filteredData = jsonData.values.map((row: any) =>
@@ -45,7 +46,7 @@ const ListeningComponent = () => {
   if (!age || !id) {
     return (
       <div>
-        <span>Something went wrong, the age and index maybe are not true</span>
+        <span>Something went wrong, the age and index maybe not true</span>
       </div>
     );
   }
