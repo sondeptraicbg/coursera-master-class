@@ -38,6 +38,14 @@ $back-color: #f7f5f3;
       & :hover {
         background-color: #e3eaea;
       }
+      @media screen and (max-width: 600px) {
+        display: flex;
+        padding: 0px 10px 0px 10px;
+        justify-content: center;
+        & > * {
+          margin: 5px;
+        }
+      }
       div {
         padding: 20px;
         margin-bottom: 20px;
@@ -84,6 +92,7 @@ $back-color: #f7f5f3;
         padding: 8px;
         text-align: start;
         border-radius: 20px;
+        font-weight: bold;
       }
       & :hover {
         background-color: #e3eaea;

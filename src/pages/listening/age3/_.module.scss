@@ -27,14 +27,22 @@ $back-color: #f7f5f3;
       flex: 1;
       padding: 25px 60px 25px 60px;
       min-width: 200px;
-      cursor: pointer;
       & :hover {
         background-color: #e3eaea;
       }
+      @media screen and (max-width: 600px) {
+        display: flex;
+        padding: 0px 10px 0px 10px;
+        justify-content: center;
+        & > * {
+          margin: 5px;
+        }
+      }
       div {
-        padding: 20px;
-        margin-bottom: 20px;
-        border: 1px solid black;
+        cursor: pointer;
+        padding: 12px;
+        margin-bottom: 15px;
+        border: 1px solid #80868b;
       }
     }
     .video {
@@ -43,7 +51,7 @@ $back-color: #f7f5f3;
       display: flex;
       align-items: center;
       flex-direction: column;
-      min-width: 400px;
+      min-width: 350px;
       .youtubeVideo {
         width: 100%;
         aspect-ratio: 16/9;
@@ -109,6 +117,13 @@ $back-color: #f7f5f3;
       background-color: #9e9be8;
     }
   }
+}
+
+#titleNewWord {
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .title {
