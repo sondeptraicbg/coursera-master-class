@@ -89,8 +89,8 @@ const TableOfContents = () => {
       <div id={styles.tocContainer} className={styles.noBullets}>
         <p className={styles.tocTitle}>Học theo lứa tuổi</p>
         <ul className={styles.tocList}>
-          {tocs.map((tocs, index) => (
-            <li key={`toc_${index}`}>
+          {tocs.map((tocs) => (
+            <li key={`toc_${tocs.id}`}>
               <a href={tocs.src}>
                 <span className={styles.tocNumber}></span> {tocs.content}
                 <Image

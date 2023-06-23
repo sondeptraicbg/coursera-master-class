@@ -125,6 +125,9 @@ const FlashCard = ({ data, id }) => {
   };
 
   const handleSwichTopic = (value) => {
+    if (value === indexTopic) {
+      return;
+    }
     setIndex(0);
     setIndexTopic(value);
   };

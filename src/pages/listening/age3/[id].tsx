@@ -68,9 +68,7 @@ const VideoOperation = ({ topics, newWords, videoUrls, id }) => {
   const [videoUrl, setVideoUrl] = useState("");
   const [indexTopic, setIndexTopic] = useState(id);
   const router = useRouter();
-  console.log(topics);
-  console.log(indexTopic);
-  console.log(videoUrls);
+
   useEffect(() => {
     if (!indexTopic) {
       return;
@@ -78,9 +76,9 @@ const VideoOperation = ({ topics, newWords, videoUrls, id }) => {
 
     const getDataViaId = async () => {
       try {
-        setTopic(topics[indexTopic]);
-        setWords(newWords[indexTopic].split(","));
-        setVideoUrl(videoUrls[indexTopic].substring(32));
+        setTopic(topics[indexTopic - 1]);
+        setWords(newWords[indexTopic - 1].split(","));
+        setVideoUrl(videoUrls[indexTopic - 1].substring(32));
       } catch (error) {
         console.log("error:", error);
       }
@@ -101,7 +99,10 @@ const VideoOperation = ({ topics, newWords, videoUrls, id }) => {
   };
 
   const handleSwitchTopic = (value) => {
-    setIndexTopic(value);
+    if (value === indexTopic) {
+      return;
+    }
+    setIndexTopic(value + 1);
   };
 
   return (
@@ -146,7 +147,7 @@ const VideoOperation = ({ topics, newWords, videoUrls, id }) => {
             <span>Các chủ đề trong cùng lứa tuổi</span>
           </div>
           {topics.map((topic, index) =>
-            index === indexTopic ? (
+            index + 1 === indexTopic ? (
               <button
                 style={{ backgroundColor: "#e3eaea" }}
                 className={styles.topic}
