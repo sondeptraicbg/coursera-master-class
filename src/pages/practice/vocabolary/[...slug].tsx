@@ -2,7 +2,7 @@ import Layout from "components/layout";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import styles from "./_.module.scss";
-
+import { GOOGLE_API_PRE, GOOGLE_API_KEY, COLUMNS } from "constants/googleapi";
 // const ranges = [
 //   [30, 43, 52, 59, 69, 86, 97, 110, 122, 132],
 //   [140, 150, 158, 167, 178, 187, 209, 216, 225, 132],
@@ -41,12 +41,11 @@ const Vocabolary = () => {
     }
     const fetchData = async () => {
       try {
+        //Fetch google api
         const response = await fetch(
-          `https://sheets.googleapis.com/v4/spreadsheets/11l2MvPp3h7MiFaf5svxGQFe84U8u-hmLNJPP-euziCg/values/basic!B${
-            ranges2[age - 4][0]
-          }:E${
+          `${GOOGLE_API_PRE}basic!B${ranges2[age - 4][0]}:E${
             ranges2[age - 4][1]
-          }?majorDimension=COLUMNS&key=AIzaSyBEC-5QDF7ocl-iJpC_vyXJjKyCdlR39i0`
+          }${COLUMNS}${GOOGLE_API_KEY}`
         );
         if (!response) {
           return;
