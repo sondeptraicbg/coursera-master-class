@@ -9,6 +9,7 @@ const ListeningPage = () => {
   const [videoUrls, setVideoUrls] = useState([]);
   const [newWords, setNewWords] = useState([]);
   const [topics, setTopics] = useState([]);
+  const [error, setError] = useState("");
   const router = useRouter();
   const { id } = router.query;
   const idNum = id ? Number(id) : null;
@@ -30,6 +31,7 @@ const ListeningPage = () => {
         setNewWords(filteredData[1]);
         setVideoUrls(filteredData[5]);
       } catch (error) {
+        setError("error: " + error);
         console.log("error", error);
       }
     };
@@ -39,7 +41,7 @@ const ListeningPage = () => {
   if (!id || !idNum || videoUrls.length == 0) {
     return (
       <div>
-        <span>Can not read data</span>
+        <span>{error}</span>
       </div>
     );
   }

@@ -116,6 +116,7 @@ const AgeGroup = ({ allTopic }) => {
 
 const Practice = () => {
   const [allTopic, setAllTopic] = useState([]);
+  const [error, setError] = useState("");
   const RANGE_SHEET = "basic!B4:K12";
 
   useEffect(() => {
@@ -130,6 +131,7 @@ const Practice = () => {
         );
         setAllTopic(filteredData);
       } catch (error) {
+        setError("error: " + error);
         console.log("An error occurred:", error);
       }
     };
@@ -139,7 +141,7 @@ const Practice = () => {
   if (allTopic.length == 0) {
     return (
       <div>
-        <span>Can not load data</span>
+        <span>{error}</span>
       </div>
     );
   }

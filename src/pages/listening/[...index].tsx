@@ -11,6 +11,7 @@ const ListeningComponent = () => {
   const [topic, setTopic] = useState<string>();
   const [newWords, setNewWords] = useState<any[]>([]);
   const [dialogue, setDialogue] = useState<any[]>([[], [], []]);
+  const [error, setError] = useState("");
   const router = useRouter();
   const { index } = router.query;
   const age = index ? String(index[0]) : null;
@@ -36,6 +37,7 @@ const ListeningComponent = () => {
         //first is English dialog, second is audio file, third is Vietnamese
         setDialogue([filteredData[4], filteredData[6], filteredData[7]]);
       } catch (error) {
+        setError("error: " + error);
         console.log("An error occurred:", error);
       }
     };
@@ -46,7 +48,7 @@ const ListeningComponent = () => {
   if (!age || !id) {
     return (
       <div>
-        <span>Something went wrong, the age and index maybe not true</span>
+        <span>{error}</span>
       </div>
     );
   }
