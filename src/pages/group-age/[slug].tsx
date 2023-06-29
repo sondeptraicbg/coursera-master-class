@@ -1,9 +1,10 @@
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useRef } from "react";
 import Layout from "components/layout";
 import Head from "next/head";
 import styles from "./_.module.scss";
 import { GOOGLE_API_KEY, GOOGLE_API_PRE, COLUMNS } from "constants/googleapi";
+import useSWR from "swr";
 const ranges = {
   age3: "basic!B16:D25",
   age4: "basic!B30:D138",
@@ -18,42 +19,49 @@ const ranges = {
 };
 
 const ListeningExercise = () => {
-  const [ageGroup, setAgeGroup] = useState<any[]>([]);
-  const [mnemonics, setMnemonics] = useState<any[]>([]);
+  const ageGroup = useRef([]);
+  const mnemonics = useRef([]);
   const router = useRouter();
   const { slug } = router.query;
   const id = slug ? String(slug) : null;
 
-  useEffect(() => {
-    if (!id) {
-      return;
+  const fetcher = async (url: any) => {
+    const res = await fetch(url);
+
+    if (!res.ok) {
+      const error = new Error("an error occurred while fetching the data");
+      error.message = res.statusText;
+      throw error;
     }
 
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          `${GOOGLE_API_PRE}${ranges[id]}${COLUMNS}${GOOGLE_API_KEY}`
-        );
-        const jsonData = await response.json();
-        const filteredData = jsonData.values.map((row: any) =>
-          row.filter((cell: any) => cell !== "")
-        );
-        setAgeGroup(filteredData[0]);
-        setMnemonics(filteredData[2]);
-      } catch (error) {
-        console.log("An error occurred:", error);
-      }
-    };
+    const jsonData = await res.json();
+    const filteredData = jsonData.values.map((row: any) =>
+      row.filter((cell: any) => cell !== "")
+    );
 
-    fetchData();
-  }, [id]);
+    return filteredData;
+  };
+
+  const { data, error } = useSWR(
+    id ? `${GOOGLE_API_PRE}${ranges[id]}${COLUMNS}${GOOGLE_API_KEY}` : null,
+    fetcher,
+    { revalidateOnMount: true }
+  );
+
+  if (data) {
+    ageGroup.current = data[0];
+    mnemonics.current = data[2];
+  }
+
+  if (error) {
+    return <div>An error occurred: {error}</div>;
+  }
 
   return (
     <div className={styles.main}>
       <Head>
         <title>Listening</title>
       </Head>
-      {/* <div>{JSON.stringify(mnemonics, null, 2)}</div> */}
 
       <header className={styles.header}>
         <div>
@@ -61,12 +69,11 @@ const ListeningExercise = () => {
           {id?.substring(3)}
         </div>
       </header>
-      {ageGroup.map((exercise, index) => (
+      {ageGroup.current.map((exercise, index) => (
         <div
           id={styles.item}
           className={styles.a}
           key={exercise}
-          // href={`/listening/${id}/${index + 1}`}
           onClick={() => {
             router.push(`/listening/${id}/${index + 1}`);
           }}
@@ -77,7 +84,7 @@ const ListeningExercise = () => {
           </div>
           <hr />
           <div className={styles.content}>
-            <p>{mnemonics ? mnemonics[index] : "no content"}</p>
+            <p>{mnemonics.current ? mnemonics.current[index] : "no content"}</p>
           </div>
           <div className={styles.bottombuttons}>
             <button className={styles.play}>Let's Listen</button>

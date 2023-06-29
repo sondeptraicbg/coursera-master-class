@@ -1,44 +1,50 @@
 import Layout from "components/layout";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./_.module.scss";
 import YouTube from "react-youtube";
 import { useRouter } from "next/router";
 import { GOOGLE_API_KEY, GOOGLE_API_PRE, COLUMNS } from "constants/googleapi";
+import useSWR from "swr";
 
 const ListeningPage = () => {
-  const [videoUrls, setVideoUrls] = useState([]);
-  const [newWords, setNewWords] = useState([]);
-  const [topics, setTopics] = useState([]);
-  const [error, setError] = useState("");
+  const videoUrls = useRef([]);
+  const newWords = useRef([]);
+  const topics = useRef([]);
   const router = useRouter();
   const { id } = router.query;
   const idNum = id ? Number(id) : null;
   const RANGE_SHEET = "basic!B16:G25";
 
-  useEffect(() => {
-    if (!idNum || !id) {
-      return;
+  const fetcher = async (url: any) => {
+    const res = await fetch(url);
+
+    if (!res.ok) {
+      const error = new Error("an error occurred while fetching the data");
+      error.message = res.statusText;
+      throw error;
     }
 
-    const fetchData = async () => {
-      try {
-        const rawData = await fetch(
-          `${GOOGLE_API_PRE}${RANGE_SHEET}${COLUMNS}${GOOGLE_API_KEY}`
-        );
-        const jsonData = await rawData.json();
-        const filteredData = await jsonData.values;
-        setTopics(filteredData[0]);
-        setNewWords(filteredData[1]);
-        setVideoUrls(filteredData[5]);
-      } catch (error) {
-        setError("error: " + error);
-        console.log("error", error);
-      }
-    };
-    fetchData();
-  }, [idNum, id]);
+    const jsonData = await res.json();
+    const filteredData = jsonData.values.map((row: any) =>
+      row.filter((cell: any) => cell !== "")
+    );
+    console.log(filteredData);
+    return filteredData;
+  };
 
-  if (!id || !idNum || videoUrls.length == 0) {
+  const { data, error } = useSWR(
+    `${GOOGLE_API_PRE}${RANGE_SHEET}${COLUMNS}${GOOGLE_API_KEY}`,
+    fetcher,
+    { revalidateOnMount: true }
+  );
+
+  if (data) {
+    topics.current = data[0];
+    newWords.current = data[1];
+    videoUrls.current = data[5];
+  }
+
+  if (!id || !idNum || videoUrls.current.length == 0) {
     return (
       <div>
         <span>{error}</span>
@@ -55,9 +61,9 @@ const ListeningPage = () => {
       </div>
 
       <VideoOperation
-        topics={topics}
-        newWords={newWords}
-        videoUrls={videoUrls}
+        topics={topics.current}
+        newWords={newWords.current}
+        videoUrls={videoUrls.current}
         id={idNum}
       />
     </div>

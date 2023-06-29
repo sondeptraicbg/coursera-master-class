@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useRef } from "react";
 import Dialogue from "./Dialogue";
 import styles from "./_.module.scss";
 import { useRouter } from "next/router";
@@ -6,46 +6,49 @@ import { Ranges } from "../../../constants/ListListeningLessons";
 import ListNewWord from "./newWords";
 import Layout from "components/layout";
 import { GOOGLE_API_KEY, GOOGLE_API_PRE, COLUMNS } from "constants/googleapi";
+import useSWR from "swr";
 
 const ListeningComponent = () => {
-  const [topic, setTopic] = useState<string>();
-  const [newWords, setNewWords] = useState<any[]>([]);
-  const [dialogue, setDialogue] = useState<any[]>([[], [], []]);
-  const [error, setError] = useState("");
+  const topic = useRef();
+  const newWords = useRef([]);
+  const dialogue = useRef([[], [], []]);
   const router = useRouter();
   const { index } = router.query;
   const age = index ? String(index[0]) : null;
   const id = index ? Number(index[1]) : 0;
 
-  useEffect(() => {
-    if (!age || !id) {
-      return;
+  const fetcher = async (url: any) => {
+    const res = await fetch(url);
+
+    if (!res.ok) {
+      const error = new Error("an error occurred while fetching the data");
+      error.message = res.statusText;
+      throw error;
     }
 
-    const fetchData = async () => {
-      try {
-        console.log(id);
-        const response = await fetch(
-          `${GOOGLE_API_PRE}basic!${Ranges[age][id]}${COLUMNS}${GOOGLE_API_KEY}`
-        );
-        const jsonData = await response.json();
-        const filteredData = jsonData.values.map((row: any) =>
-          row.filter((cell: any) => cell !== "")
-        );
-        setTopic(filteredData[1]);
-        setNewWords(filteredData[2].toString().split(","));
-        //first is English dialog, second is audio file, third is Vietnamese
-        setDialogue([filteredData[4], filteredData[6], filteredData[7]]);
-      } catch (error) {
-        setError("error: " + error);
-        console.log("An error occurred:", error);
-      }
-    };
+    const jsonData = await res.json();
+    const filteredData = jsonData.values.map((row: any) =>
+      row.filter((cell: any) => cell !== "")
+    );
 
-    fetchData();
-  }, [age, id]);
+    return filteredData;
+  };
 
-  if (!age || !id) {
+  const { data, error } = useSWR(
+    age && id
+      ? `${GOOGLE_API_PRE}basic!${Ranges[age][id]}${COLUMNS}${GOOGLE_API_KEY}`
+      : null,
+    fetcher,
+    { revalidateOnMount: true }
+  );
+
+  if (data) {
+    topic.current = data[1];
+    newWords.current = data[2].toString().split(",");
+    dialogue.current = [data[4], data[6], data[7]];
+  }
+
+  if (error || !age || !id) {
     return (
       <div>
         <span>{error}</span>
@@ -59,7 +62,7 @@ const ListeningComponent = () => {
         <div className={styles.header}>
           <div className={styles.title}>
             <span>{`Topic: ${
-              topic ? topic : "No content"
+              topic.current ? topic.current : "No content"
             } - lứa tuổi ${age?.substring(3)}`}</span>
           </div>
         </div>
@@ -71,13 +74,13 @@ const ListeningComponent = () => {
             />
           </div>
           <Dialogue
-            dialogue={dialogue}
+            dialogue={dialogue.current}
             audioSrc={`/audio/${age}/${age?.substring(3)}.${id}/`}
           ></Dialogue>
         </div>
 
         <div>
-          <ListNewWord words={newWords}></ListNewWord>
+          <ListNewWord words={newWords.current}></ListNewWord>
         </div>
       </div>
     </>

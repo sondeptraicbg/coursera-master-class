@@ -3,17 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import styles from "./_.module.scss";
 import { GOOGLE_API_PRE, GOOGLE_API_KEY, COLUMNS } from "constants/googleapi";
-// const ranges = [
-//   [30, 43, 52, 59, 69, 86, 97, 110, 122, 132],
-//   [140, 150, 158, 167, 178, 187, 209, 216, 225, 132],
-//   [236, 242, 249, 256, 264, 273, 283, 293, 301, 316],
-//   [334, 350, 358, 367, 375, 386, 396, 417, 424, 433],
-//   [442, 451, 462, 472, 478, 488, 499, 507, 515, 524],
-//   [534, 540, 549, 565, 574, 588, 601, 612, 620, 626],
-//   [640, 655, 665, 674, 684, 694, 706, 713, 720, 729],
-//   [739, 749, 758, 769, 780, 791, 801, 809, 819, 826],
-//   [837, 849, 859, 866, 873, 884, 893, 903, 909, 916],
-// ];
+import useSWR from "swr";
 
 const ranges2 = [
   [30, 132],
@@ -28,42 +18,39 @@ const ranges2 = [
 ];
 
 const Vocabolary = () => {
-  const [topic, setTopic] = useState("");
-  const [data, setData] = useState([]);
   const router = useRouter();
   const { slug } = router.query;
   const age = slug ? Number(slug[0]) : 0;
   const id = slug ? Number(slug[1]) : 0;
 
-  useEffect(() => {
-    if (!age || !id) {
-      return;
-    }
-    const fetchData = async () => {
-      try {
-        //Fetch google api
-        const response = await fetch(
-          `${GOOGLE_API_PRE}basic!B${ranges2[age - 4][0]}:E${
-            ranges2[age - 4][1]
-          }${COLUMNS}${GOOGLE_API_KEY}`
-        );
-        if (!response) {
-          return;
-        }
-        const jsonData = await response.json();
-        const filteredData = jsonData.values.map((row: any) =>
-          row.filter((cell: any) => cell !== "")
-        );
-        setTopic(filteredData[0][id - 1]);
-        setData(filteredData);
-      } catch (error) {
-        console.log("an error occurred", error);
-      }
-    };
-    fetchData();
-  }, [age, id]);
+  const fetcher = async (url: any) => {
+    const res = await fetch(url);
 
-  if (!age || !id) {
+    if (!res.ok) {
+      const error = new Error("an error occurred while fetching the data");
+      error.message = res.statusText;
+      throw error;
+    }
+
+    const jsonData = await res.json();
+    const filteredData = jsonData.values.map((row: any) =>
+      row.filter((cell: any) => cell !== "")
+    );
+
+    return filteredData;
+  };
+
+  const { data, error } = useSWR(
+    age
+      ? `${GOOGLE_API_PRE}basic!B${ranges2[age - 4][0]}:E${
+          ranges2[age - 4][1]
+        }${COLUMNS}${GOOGLE_API_KEY}`
+      : null,
+    fetcher,
+    { revalidateOnMount: true }
+  );
+
+  if (error) {
     return (
       <div>
         <span>Can not load data</span>
@@ -72,16 +59,14 @@ const Vocabolary = () => {
   }
 
   return (
-    <>
-      <div className={styles.container}>
-        <div className={styles.header}>
-          <span>Lứa tuổi: {age}</span>
-        </div>
-        <div className={styles.content}>
-          <FlashCard data={data} id={id} />
-        </div>
+    <div className={styles.container}>
+      <div className={styles.header}>
+        <span>Lứa tuổi: {age}</span>
       </div>
-    </>
+      <div className={styles.content}>
+        <FlashCard data={data} id={id} />
+      </div>
+    </div>
   );
 };
 
@@ -93,7 +78,6 @@ const FlashCard = ({ data, id }) => {
   const [dialogues, setDialogues] = useState([]);
   const router = useRouter();
   const len = newWords.length;
-  console.log(data);
 
   useEffect(() => {
     if (!data) {
@@ -104,8 +88,6 @@ const FlashCard = ({ data, id }) => {
         setTopics(data[0]);
         setNewWords(data[1][indexTopic].split(","));
         setDialogues(data[3]);
-        console.log(indexTopic);
-        console.log(newWords);
       } catch (error) {
         console.log("error", error);
       }
@@ -137,11 +119,9 @@ const FlashCard = ({ data, id }) => {
 
   if (!topics) {
     return (
-      <>
-        <div>
-          <span>Can not read data</span>
-        </div>
-      </>
+      <div>
+        <span>Can not read data</span>
+      </div>
     );
   }
 

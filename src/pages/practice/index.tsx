@@ -1,9 +1,10 @@
 import Layout from "components/layout";
-import { link } from "fs";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styles from "./_.module.scss";
 import { GOOGLE_API_KEY, GOOGLE_API_PRE, ROWS } from "constants/googleapi";
+import useSWR from "swr";
+
 type age = {
   id: number;
   name: string;
@@ -115,30 +116,34 @@ const AgeGroup = ({ allTopic }) => {
 };
 
 const Practice = () => {
-  const [allTopic, setAllTopic] = useState([]);
-  const [error, setError] = useState("");
   const RANGE_SHEET = "basic!B4:K12";
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          `${GOOGLE_API_PRE}${RANGE_SHEET}${ROWS}${GOOGLE_API_KEY}`
-        );
-        const jsonData = await response.json();
-        const filteredData = jsonData.values.map((row: any) =>
-          row.filter((cell: any) => cell !== "")
-        );
-        setAllTopic(filteredData);
-      } catch (error) {
-        setError("error: " + error);
-        console.log("An error occurred:", error);
-      }
-    };
-    fetchData();
-  });
+  const fetcher = async (url: any) => {
+    const res = await fetch(url);
 
-  if (allTopic.length == 0) {
+    if (!res.ok) {
+      const error = new Error("an error occurred while fetching the data");
+      error.message = res.statusText;
+      throw error;
+    }
+
+    const jsonData = await res.json();
+    const filteredData = jsonData.values.map((row: any) =>
+      row.filter((cell: any) => cell !== "")
+    );
+
+    return filteredData;
+  };
+
+  const { data, error } = useSWR(
+    `${GOOGLE_API_PRE}${RANGE_SHEET}${ROWS}${GOOGLE_API_KEY}`,
+    fetcher,
+    {
+      revalidateOnMount: true,
+    }
+  );
+
+  if (error) {
     return (
       <div>
         <span>{error}</span>
@@ -146,7 +151,7 @@ const Practice = () => {
     );
   }
 
-  return <AgeGroup allTopic={allTopic} />;
+  return <AgeGroup allTopic={data} />;
 };
 
 Practice.getLayout = Layout;
