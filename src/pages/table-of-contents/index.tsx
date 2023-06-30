@@ -91,7 +91,7 @@ const TableOfContents = () => {
         <ul className={styles.tocList}>
           {tocs.map((tocs) => (
             <li key={`toc_${tocs.id}`}>
-              <a href={tocs.src}>
+              <div className={styles.a} onClick={() => router.push(tocs.src)}>
                 <span className={styles.tocNumber}></span> {tocs.content}
                 <Image
                   src={tocs.image}
@@ -100,7 +100,7 @@ const TableOfContents = () => {
                   height={24}
                   className={styles.image}
                 />
-              </a>
+              </div>
             </li>
           ))}
         </ul>

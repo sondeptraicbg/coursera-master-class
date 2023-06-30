@@ -32,7 +32,7 @@
     backdrop-filter: blur(10px);
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     box-sizing: border-box;
-    a {
+    .a {
       text-decoration: none;
       transition: 0.3s;
     }
@@ -51,9 +51,10 @@
       }
     }
     .tocList {
-      a {
+      .a {
         display: flex;
         align-items: flex-start;
+        cursor: pointer;
         &:hover {
           opacity: 0.6;
         }
@@ -104,7 +105,7 @@
   #tocContainer {
     padding: 2rem;
     line-height: 1.8;
-    a {
+    .a {
       color: #1a1a1a;
     }
     .tocToggle a {
@@ -131,7 +132,7 @@
       li {
         position: relative;
         padding: 0.3rem 0;
-        a {
+        .a {
           align-items: center;
           &:before {
             content: "";
@@ -150,7 +151,7 @@
           margin-right: 0.5rem;
         }
         ul li {
-          a {
+          .a {
             padding-left: 2.5rem;
             &:before {
               content: none;
