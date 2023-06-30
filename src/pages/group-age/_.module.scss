@@ -103,8 +103,14 @@
     & :hover {
       -webkit-transform: scale(2);
       -ms-ransform: scale(2);
-      transform: scale(1.1);
-      transition: 0.5s;
+      transform: scale(1.05);
+      transition: 0.4s;
+    }
+
+    .heart {
+      margin-top: 2px;
+      width: 1.5rem;
+      height: 1.5rem;
     }
   }
 }

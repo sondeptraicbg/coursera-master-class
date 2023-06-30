@@ -7,6 +7,7 @@ import ListNewWord from "./newWords";
 import Layout from "components/layout";
 import { GOOGLE_API_KEY, GOOGLE_API_PRE, COLUMNS } from "constants/googleapi";
 import useSWR from "swr";
+import Head from "next/head";
 
 const ListeningComponent = () => {
   const topic = useRef();
@@ -58,6 +59,9 @@ const ListeningComponent = () => {
 
   return (
     <>
+      <Head>
+        <title>Listening</title>
+      </Head>
       <div className={styles.layout}>
         <div className={styles.header}>
           <div className={styles.title}>
