@@ -13,24 +13,24 @@ export default function handler(
   res.status(200).json({ name: "John Doe" });
 }
 
-const sheets = google.sheets("v4");
+// const sheets = google.sheets("v4");
 
-const putHeart = async (spreadsheetId, range) => {
-  const auth = new google.auth.GoogleAuth({
-    keyFile: path.resolve("./constant/credentials.json"),
-    scopes: ["https://www.googleapis.com/auth/spreadsheets"],
-  });
+// const putHeart = async (spreadsheetId, range) => {
+//   const auth = new google.auth.GoogleAuth({
+//     keyFile: path.resolve("./constant/credentials.json"),
+//     scopes: ["https://www.googleapis.com/auth/spreadsheets"],
+//   });
 
-  google.options({ auth });
+//   google.options({ auth });
 
-  const res = await sheets.spreadsheets.values.update({
-    spreadsheetId,
-    range,
-    valueInputOption: "USER_ENTERED",
-    requestBody: {
-      values: [["1"]],
-    },
-  });
-  return res.data;
-};
-putHeart("11l2MvPp3h7MiFaf5svxGQFe84U8u-hmLNJPP-euziCg", "vocabolary!A2");
+//   const res = await sheets.spreadsheets.values.update({
+//     spreadsheetId,
+//     range,
+//     valueInputOption: "USER_ENTERED",
+//     requestBody: {
+//       values: [["1"]],
+//     },
+//   });
+//   return res.data;
+// };
+// putHeart("11l2MvPp3h7MiFaf5svxGQFe84U8u-hmLNJPP-euziCg", "vocabolary!A2");
