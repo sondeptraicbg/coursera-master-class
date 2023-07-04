@@ -1,9 +1,8 @@
-import styles from "./_.module.scss";
 import Image from "next/image";
 import Layout from "components/layout";
 import Head from "next/head";
 import { useRouter } from "next/router";
-
+import styles from "./_.module.scss";
 type tocData = {
   id: number;
   content: string;
@@ -110,7 +109,7 @@ const TableOfContents = () => {
         <div
           className={styles.practiceItem}
           onClick={() => {
-            moveOnPage("/practice");
+            moveOnPage("/love");
           }}
         >
           <p>Danh sách yêu thích</p>
