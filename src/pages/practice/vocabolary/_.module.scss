@@ -55,21 +55,37 @@ $back-color: #f7f5f3;
 
     .flashCard {
       flex: 3;
-      .tag {
+      .tagarea {
+        position: relative;
         width: 50%;
         max-width: 600px;
         min-width: 250px;
         height: 300px;
-        background-color: #e3eaea;
-        border-radius: 20px;
-        margin: 20px auto;
-        display: flex;
-        align-items: center;
-        border: 1px solid #80868b;
-        font-size: 200%;
-        span {
+        margin: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        transition: transform 0.4s;
+        transform-style: preserve-3d;
+        .tag,
+        .cardBack {
+          height: 100%;
           width: 100%;
-          text-align: center;
+          background-color: #e3eaea;
+          border-radius: 20px;
+          display: flex;
+          align-items: center;
+          border: 1px solid #80868b;
+          font-size: 200%;
+          position: absolute;
+          cursor: pointer;
+          backface-visibility: hidden;
+          span {
+            width: 100%;
+            text-align: center;
+          }
+        }
+        .cardBack {
+          transform: rotateX(180deg);
         }
       }
 
@@ -152,4 +168,7 @@ $back-color: #f7f5f3;
   top: 10px;
   left: 5px;
   transform: rotate(135deg);
+}
+.tagarea.flipped {
+  transform: rotateX(180deg);
 }

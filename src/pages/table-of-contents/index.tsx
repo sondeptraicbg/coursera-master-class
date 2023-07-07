@@ -122,7 +122,7 @@ const TableOfContents = () => {
           }}
         >
           <h2>Ôn tập từ vựng</h2>
-          <p style={{ color: "#7f7f7f" }}>Tổng từ vựng: 720</p>
+          <p style={{ color: "#7f7f7f" }}>Tổng từ vựng: 1000</p>
         </div>
       </div>
     </div>

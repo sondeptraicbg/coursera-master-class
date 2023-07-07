@@ -42,7 +42,7 @@ const Vocabolary = () => {
 
   const { data, error } = useSWR(
     age
-      ? `${GOOGLE_API_PRE}basic!B${ranges2[age - 4][0]}:E${
+      ? `${GOOGLE_API_PRE}vocabolary!B${ranges2[age - 4][0]}:F${
           ranges2[age - 4][1]
         }${COLUMNS}${GOOGLE_API_KEY}`
       : null,
@@ -70,12 +70,49 @@ const Vocabolary = () => {
   );
 };
 
+const WordTag = ({ word, color, vietnam }) => {
+  const [isFlipped, setIsFlipped] = useState(false);
+  const [current, setCurrent] = useState(word);
+  if (current !== word) {
+    setCurrent(word);
+    setIsFlipped(false);
+  }
+  const handleCardClick = () => {
+    setIsFlipped(!isFlipped);
+  };
+
+  return (
+    <div
+      className={styles.tagarea + (isFlipped ? " " + styles.flipped : "")}
+      onClick={handleCardClick}
+    >
+      <div
+        style={{
+          backgroundColor: `${color}`,
+        }}
+        className={styles.tag}
+      >
+        <span>{word}</span>
+      </div>
+      <div
+        style={{
+          backgroundColor: `${color}`,
+        }}
+        className={styles.cardBack}
+      >
+        <span>{vietnam}</span>
+      </div>
+    </div>
+  );
+};
+
 const FlashCard = ({ data, id }) => {
   const [index, setIndex] = useState(0);
   const [indexTopic, setIndexTopic] = useState(id);
   const [topics, setTopics] = useState([]);
   const [newWords, setNewWords] = useState([]);
   const [dialogues, setDialogues] = useState([]);
+  const [vietnamese, setVietnamese] = useState([]);
   const router = useRouter();
   const len = newWords.length;
 
@@ -88,6 +125,7 @@ const FlashCard = ({ data, id }) => {
         setTopics(data[0]);
         setNewWords(data[1][indexTopic].split(","));
         setDialogues(data[3]);
+        setVietnamese(data[4][indexTopic].split(","));
       } catch (error) {
         console.log("error", error);
       }
@@ -146,9 +184,14 @@ const FlashCard = ({ data, id }) => {
       </div>
       {/* FLASH CARDS */}
       <div className={styles.flashCard}>
-        <div className={styles.tag}>
-          <span>{newWords[index]}</span>
+        <div style={{ textAlign: "center" }}>
+          <h3>Ấn vào thẻ để xem nghĩa tiếng Việt</h3>
         </div>
+        <WordTag
+          color={index % 2 == 0 ? "#56BECB" : "#92DDEE"}
+          word={newWords[index]}
+          vietnam={vietnamese[index]}
+        />
 
         <div className={styles["switch-button"]}>
           <button
