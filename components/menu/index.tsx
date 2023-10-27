@@ -55,62 +55,65 @@ const Menu = forwardRef(() => {
             </div>
           )}
           <div className={styles.menuCardPhoto}>
-              <div className={styles.menuCardPhotoBgc}></div>
-              <div className={styles.menuCardPhotoInside}></div>
-              <Image
-                    src="/author.png"
-                    alt=""
-                    width={64}
-                    height={64}
-                    className={styles.image}
-                />
+            <div className={styles.menuCardPhotoBgc}></div>
+            <div className={styles.menuCardPhotoInside}></div>
+            <Image
+              src="/author.png"
+              alt=""
+              width={64}
+              height={64}
+              className={styles.image}
+            />
           </div>
-          <p>Tác giả</p>
+          <p>About us</p>
         </div>
         <div className={styles.menuCard} onClick={() => movePage("/rules")}>
-        <div className={styles.menuCardPhoto}>
-              <div className={styles.menuCardPhotoBgc}></div>
-              <div className={styles.menuCardPhotoInside}></div>
-              <Image
-                    src="/rules.png"
-                    alt=""
-                    width={64}
-                    height={64}
-                    className={styles.image}
-                />
+          <div className={styles.menuCardPhoto}>
+            <div className={styles.menuCardPhotoBgc}></div>
+            <div className={styles.menuCardPhotoInside}></div>
+            <Image
+              src="/rules.png"
+              alt=""
+              width={64}
+              height={64}
+              className={styles.image}
+            />
           </div>
-          <p>Nguyên tắc</p>
+          <p>Method</p>
         </div>
         <div
           className={styles.menuCard}
           onClick={() => movePage("/how-to-learn")}
         >
           <div className={styles.menuCardPhoto}>
-              <div className={styles.menuCardPhotoBgc}></div>
-              <div className={styles.menuCardPhotoInside}></div>
-              <Image
-                    src="/user-guide.png"
-                    alt=""
-                    width={64}
-                    height={64}
-                    className={styles.image}
-                />
+            <div className={styles.menuCardPhotoBgc}></div>
+            <div className={styles.menuCardPhotoInside}></div>
+            <Image
+              src="/user-guide.png"
+              alt=""
+              width={64}
+              height={64}
+              className={styles.image}
+            />
           </div>
-          <p>Cách học</p>
+          <p>Time</p>
         </div>
-        <div className={styles.menuCard} onClick={() => movePage("/table-of-contents")}>
-        <div className={styles.menuCardPhoto}>
-              <div className={styles.menuCardPhotoBgc}></div>
-              <div className={styles.menuCardPhotoInside}></div>
-              <Image
-                    src="/learning.png"
-                    alt=""
-                    width={64}
-                    height={64}
-                    className={styles.image}
-                />
+        <div
+          className={styles.menuCard}
+          onClick={() => movePage("/table-of-contents")}
+        >
+          <div className={styles.menuCardPhoto}>
+            <div className={styles.menuCardPhotoBgc}></div>
+            <div className={styles.menuCardPhotoInside}></div>
+            <Image
+              src="/learning.png"
+              alt=""
+              width={64}
+              height={64}
+              className={styles.image}
+            />
           </div>
-          <p>Học</p>
+          <p>Sample</p>
         </div>
       </div>
     </>

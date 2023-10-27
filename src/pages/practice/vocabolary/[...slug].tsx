@@ -61,7 +61,7 @@ const Vocabolary = () => {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <span>Lứa tuổi: {age}</span>
+        <span>Mã môn: {age}</span>
       </div>
       <div className={styles.content}>
         <FlashCard data={data} id={id} />

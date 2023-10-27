@@ -14,48 +14,23 @@ type age = {
 const ages: age[] = [
   {
     id: 4,
-    name: "Lứa tuổi 4",
+    name: "WED",
     background: "/imgs/age4/4.1.jpg",
   },
   {
     id: 5,
-    name: "Lứa tuổi 5",
+    name: "ENW",
     background: "/imgs/age5/5.1.jpg",
   },
   {
     id: 6,
-    name: "Lứa tuổi 6",
+    name: "NWC",
     background: "/imgs/age6/6.1.jpg",
   },
   {
     id: 7,
-    name: "Lứa tuổi 7",
+    name: "SSL",
     background: "/imgs/age7/7.1.jpg",
-  },
-  {
-    id: 8,
-    name: "Lứa tuổi 8",
-    background: "/imgs/age8/8.1.jpg",
-  },
-  {
-    id: 9,
-    name: "Lứa tuổi 9",
-    background: "/imgs/age9/9.1.jpg",
-  },
-  {
-    id: 10,
-    name: "Lứa tuổi 10",
-    background: "/imgs/age10/10.1.jpg",
-  },
-  {
-    id: 11,
-    name: "Lứa tuổi 11",
-    background: "/imgs/age11/11.1.jpg",
-  },
-  {
-    id: 12,
-    name: "Lứa tuổi 12",
-    background: "/imgs/age12/12.1.jpg",
   },
 ];
 
@@ -78,7 +53,7 @@ const AgeGroup = ({ allTopic }) => {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <span>Từ vựng theo lứa tuổi</span>
+        <span>Danh sách các môn học</span>
       </div>
 
       {ages.map((age, index) => (

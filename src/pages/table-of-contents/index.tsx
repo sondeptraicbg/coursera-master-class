@@ -13,63 +13,27 @@ type tocData = {
 const tocs: tocData[] = [
   {
     id: 2,
-    content: "Lứa tuổi: 3",
+    content: "Mã môn: WED",
     image: "/table-of-contents/hello.png",
     src: "/group-age/age3",
   },
   {
     id: 3,
-    content: "Lứa tuổi: 4",
+    content: "Mã môn: ENW",
     image: "/table-of-contents/one-hundred.png",
     src: "/group-age/age4",
   },
   {
     id: 4,
-    content: "Lứa tuổi: 5",
+    content: "Mã môn: NWC",
     image: "/table-of-contents/one-hundred.png",
     src: "/group-age/age5",
   },
   {
     id: 5,
-    content: "Lứa tuổi: 6",
+    content: "Mã môn: SSL",
     image: "/table-of-contents/number-blocks.png",
     src: "/group-age/age6",
-  },
-  {
-    id: 6,
-    content: "Lứa tuổi: 7",
-    image: "/table-of-contents/schedule.png",
-    src: "/group-age/age7",
-  },
-  {
-    id: 7,
-    content: "Lứa tuổi: 8",
-    image: "/table-of-contents/color-palette.png",
-    src: "/group-age/age8",
-  },
-  {
-    id: 8,
-    content: "Lứa tuổi: 9",
-    image: "/table-of-contents/family.png",
-    src: "/group-age/age9",
-  },
-  {
-    id: 9,
-    content: "Lứa tuổi: 10",
-    image: "/table-of-contents/house.png",
-    src: "/group-age/age10",
-  },
-  {
-    id: 10,
-    content: "Lứa tuổi: 11",
-    image: "/table-of-contents/school.png",
-    src: "/group-age/age11",
-  },
-  {
-    id: 11,
-    content: "Lứa tuổi: 12",
-    image: "/table-of-contents/presentation.png",
-    src: "/group-age/age12",
   },
 ];
 
@@ -85,8 +49,8 @@ const TableOfContents = () => {
       <Head>
         <title>Mục lục</title>
       </Head>
-      <div id={styles.tocContainer} className={styles.noBullets}>
-        <p className={styles.tocTitle}>Học theo lứa tuổi</p>
+      {/* <div id={styles.tocContainer} className={styles.noBullets}>
+        <p className={styles.tocTitle}>Các môn học</p>
         <ul className={styles.tocList}>
           {tocs.map((tocs) => (
             <li key={`toc_${tocs.id}`}>
@@ -103,16 +67,16 @@ const TableOfContents = () => {
             </li>
           ))}
         </ul>
-      </div>
-      <div id={styles.practice}>
-        <span>Ôn tập</span>
+      </div> */}
+      <div className={styles.practice}>
+        <span>Tóm tắt kiến thức</span>
         <div
           className={styles.practiceItem}
           onClick={() => {
             moveOnPage("/love");
           }}
         >
-          <p>Danh sách yêu thích</p>
+          <p>WED</p>
         </div>
 
         <div
@@ -121,8 +85,29 @@ const TableOfContents = () => {
             moveOnPage("/practice");
           }}
         >
-          <h2>Ôn tập từ vựng</h2>
-          <p style={{ color: "#7f7f7f" }}>Tổng từ vựng: 1000</p>
+          <h2>NWC</h2>
+          <p style={{ color: "#7f7f7f" }}>Networking</p>
+        </div>
+      </div>
+      <div className={styles.practice}>
+        <span>Tóm tắt kiến thức</span>
+        <div
+          className={styles.practiceItem}
+          onClick={() => {
+            moveOnPage("/love");
+          }}
+        >
+          <p>ENW</p>
+        </div>
+
+        <div
+          className={styles.practiceItem}
+          onClick={() => {
+            moveOnPage("/practice");
+          }}
+        >
+          <h2>SSL</h2>
+          <p style={{ color: "#7f7f7f" }}>University Success</p>
         </div>
       </div>
     </div>

@@ -67,19 +67,9 @@ const Deck = () => {
   // Now we're just mapping the animated values to our view, that's it. Btw, this component only renders once. :-)
   return (
     <>
-      {props.map(({ x, y, rot, scale }, i) => (
-        <animated.div className={styles.deck} key={i} style={{ x, y }}>
-          {/* This is the card itself, we're binding our gesture to it (and inject its index so we know which is which) */}
-          <animated.div
-            {...bind(i)}
-            style={{
-              transform: interpolate([rot, scale], trans),
-              backgroundImage: `url(${cards[i]})`,
-              //   backgroundSize: `contain`,
-            }}
-          />
-        </animated.div>
-      ))}
+      <h1 className="lg:text-2xl md:text-xl text-lg">
+        Tập trung vào các kiến thức trọng tâm, mẫu đề thi và các keywords
+      </h1>
     </>
   );
 };
@@ -94,5 +84,5 @@ const GoldenRules = () => {
     </div>
   );
 };
-GoldenRules.getLayout = Layout
+GoldenRules.getLayout = Layout;
 export default GoldenRules;

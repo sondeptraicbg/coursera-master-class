@@ -12,31 +12,8 @@ const EffectiveWay = () => {
           src={require("../../../public/study.png")}
         />
         <h1 className="lg:text-2xl md:text-xl text-lg">
-          3/ Giữ cho đầu óc thoải mái và học hiệu quả
+          Thời gian sẽ được phân bố vào các buổi tối
         </h1>
-        <ul>
-          <li>
-            <h2 className="lg:text-xl md:text-xl text-sm indent-4">
-              2.1 Nghe nhiều
-            </h2>
-          </li>
-          <li>
-            <h2 className="lg:text-xl md:text-xl text-sm indent-4">
-              3.1 Học theo block 25 phút rồi nghỉ 5 phút
-            </h2>
-          </li>
-          <li>
-            <h2 className="lg:text-xl md:text-xl text-sm indent-4">
-              3.2 Học hiệu quả lúc sáng sớm, tối trước khi đi ngủ, trước lúc ăn
-              cơm.
-            </h2>
-          </li>
-          <li>
-            <h2 className="lg:text-xl md:text-xl text-sm indent-4">
-              3.3 Ngủ đủ, uống đủ nước
-            </h2>
-          </li>
-        </ul>
       </div>
     </>
   );
