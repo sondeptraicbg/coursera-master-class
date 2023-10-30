@@ -70,42 +70,22 @@ const TableOfContents = () => {
       </div> */}
       <div className={styles.practice}>
         <span>Tóm tắt kiến thức</span>
-        <div
-          className={styles.practiceItem}
-          onClick={() => {
-            moveOnPage("/love");
-          }}
-        >
+        <div className={styles.practiceItem}>
           <p>WED</p>
         </div>
 
-        <div
-          className={styles.practiceItem}
-          onClick={() => {
-            moveOnPage("/practice");
-          }}
-        >
+        <div className={styles.practiceItem}>
           <h2>NWC</h2>
           <p style={{ color: "#7f7f7f" }}>Networking</p>
         </div>
       </div>
       <div className={styles.practice}>
         <span>Tóm tắt kiến thức</span>
-        <div
-          className={styles.practiceItem}
-          onClick={() => {
-            moveOnPage("/love");
-          }}
-        >
+        <div className={styles.practiceItem}>
           <p>ENW</p>
         </div>
 
-        <div
-          className={styles.practiceItem}
-          onClick={() => {
-            moveOnPage("/practice");
-          }}
-        >
+        <div className={styles.practiceItem}>
           <h2>SSL</h2>
           <p style={{ color: "#7f7f7f" }}>University Success</p>
         </div>
