@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <>
       <Head>
-        <title>Learning English</title>
+        <title>Coursera here</title>
       </Head>
       <div>
         <Lottie
