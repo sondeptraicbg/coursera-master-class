@@ -69,9 +69,10 @@ const TableOfContents = () => {
         </ul>
       </div> */}
       <div className={styles.practice}>
-        <span>Tóm tắt kiến thức</span>
+        <span>Technology</span>
         <div className={styles.practiceItem}>
           <p>WED</p>
+          <p style={{ color: "#7f7f7f" }}>Web design</p>
         </div>
 
         <div className={styles.practiceItem}>
@@ -80,9 +81,10 @@ const TableOfContents = () => {
         </div>
       </div>
       <div className={styles.practice}>
-        <span>Tóm tắt kiến thức</span>
+        <span>Non-tech</span>
         <div className={styles.practiceItem}>
           <p>ENW</p>
+          <p style={{ color: "#7f7f7f" }}>English writing</p>
         </div>
 
         <div className={styles.practiceItem}>
